@@ -9,11 +9,10 @@ package client.console_interface;
 // Console class:
 // Prompts users for performing Refresh and Read operations on database
 
-// Console class:
-// Abstract class which is used in parallel to the view interface
-// Contains abstract methods for the Input and Dashboard classes
-public abstract class Console {
-    abstract void refreshOperation();
-
-    abstract void readOperation();
+// View interface:
+// Contains display methods to implement for the Command and Dashboard classes
+public interface View {
+        public void setup();
+        public void displayDashboard();
+        public void displayForecast();
 }
