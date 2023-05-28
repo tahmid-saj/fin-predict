@@ -1,5 +1,7 @@
 package client.console_interface;
 
+import java.util.Date;
+
 // Console interface:
 
 // View interface:
@@ -12,6 +14,8 @@ package client.console_interface;
 // View interface:
 // Contains display methods to implement for the Command and Dashboard classes
 public interface ViewConsole {
+        static Date today = new Date();
+
         void displayForecast();
 }
 
