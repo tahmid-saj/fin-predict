@@ -4,8 +4,9 @@ public class Input extends Console implements ViewConsole {
 
     @Override
     public void displayForecast() {
-        System.out.println(ViewConsole.today);
+        System.out.println("Forecast for: " + ViewConsole.today);
     }
+
     void refreshOperation() {
 
     }
