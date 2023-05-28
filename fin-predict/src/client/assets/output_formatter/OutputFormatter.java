@@ -1,4 +1,4 @@
-package client.output_formatter;
+package client.assets.output_formatter;
 
 public class OutputFormatter {
 }
