@@ -1,4 +1,4 @@
 package client.console_interface;
 
-public class Argument {
+public class Argument extends Input {
 }
