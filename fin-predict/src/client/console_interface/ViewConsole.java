@@ -11,8 +11,7 @@ package client.console_interface;
 
 // View interface:
 // Contains display methods to implement for the Command and Dashboard classes
-public interface View {
-        public void setup();
-        public void displayDashboard();
-        public void displayForecast();
+public interface ViewConsole {
+        void displayForecast();
 }
+
