@@ -1,10 +1,9 @@
 package client.middleware;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class RouterClient {
+public class ClientRouter {
 
     // Use cases:
 

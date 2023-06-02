@@ -1,6 +1,6 @@
 package client.console_interface;
 
-import client.middleware.RouterClient;
+import client.middleware.ClientRouter;
 
-public class Request extends RouterClient {
+public class Request extends ClientRouter {
 }

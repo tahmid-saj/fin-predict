@@ -1,6 +1,5 @@
 package client.dashboard;
 import client.console_interface.ViewDashboard;
-import client.middleware.RouterClient;
 
 public class Dashboard  implements ViewDashboard {
     protected static Price price = new Price();
