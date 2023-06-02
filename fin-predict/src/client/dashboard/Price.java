@@ -2,34 +2,49 @@ package client.dashboard;
 import client.assets.output_formatter.OutputFormatter;
 import client.middleware.ClientRouter;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 
 public class Price extends ClientRouter {
-    static Date today = new Date();
+    private static LocalDateTime today = LocalDateTime.now();
+    private static final double MILLISECS_IN_A_DAY = 1000 * 60 * 60 * 24;
 
     // Default value of past days of the prices to display
-    protected static final int previousDaysDisplay = 14;
+    protected static final int previousDaysDisplay = 3;
 
     // Displays past prices if daysToDisplay is given
     protected void displayPastPrices(int daysToDisplay) {
         List<Double> resPreviousPrices = ClientRouter.reqPreviousPrices(daysToDisplay);
-        List<Date> previousDaysToDisplay = new ArrayList<Date>();
-        OutputFormatter.printPreviousPrices(resPreviousPrices, daysToDisplay, previousDaysToDisplay);
+        List<LocalDateTime> previousDaysToDisplay = new ArrayList<LocalDateTime>();
+        Map<LocalDateTime, Double> datePrices = new HashMap<LocalDateTime, Double>();
+
+        for (int prevDay = 0; prevDay < daysToDisplay; prevDay++) {
+            previousDaysToDisplay.add(today.minus(prevDay, ChronoUnit.DAYS));
+            datePrices.put(today.minus(prevDay, ChronoUnit.DAYS), resPreviousPrices.get(prevDay));
+        }
+
+        OutputFormatter.printPreviousPrices(resPreviousPrices, daysToDisplay, previousDaysToDisplay, datePrices);
     }
 
     // Displays past prices if daysToDisplay is not given
     protected void displayPastPrices() {
         // Uses previousDaysDisplay by default
         List<Double> resPreviousPrices = ClientRouter.reqPreviousPrices(previousDaysDisplay);
-        List<Date> previousDaysToDisplay = new ArrayList<Date>();
-        OutputFormatter.printPreviousPrices(resPreviousPrices, previousDaysDisplay, previousDaysToDisplay);
+        List<LocalDateTime> previousDaysToDisplay = new ArrayList<LocalDateTime>();
+        Map<LocalDateTime, Double> datePrices = new HashMap<LocalDateTime, Double>();
+
+        for (int prevDay = 0; prevDay < previousDaysDisplay; prevDay++) {
+            previousDaysToDisplay.add(today.minus(prevDay, ChronoUnit.DAYS));
+            datePrices.put(today.minus(prevDay, ChronoUnit.DAYS), resPreviousPrices.get(prevDay));
+        }
+
+        OutputFormatter.printPreviousPrices(resPreviousPrices, previousDaysDisplay, previousDaysToDisplay, datePrices);
     }
 
     // Displays the forecasting prediction of current day
-    protected void displayCurrentDayForecast() {
-        double resCurrentDayForecast = ClientRouter.reqCurrentDayPrediction();
-        OutputFormatter.printCurrentDayPrediction(today);
+    protected void displayCurrentDayPrediction() {
+        double resCurrentDayPrediction = ClientRouter.reqCurrentDayPrediction();
+        OutputFormatter.printCurrentDayPrediction(today, resCurrentDayPrediction);
     }
 }

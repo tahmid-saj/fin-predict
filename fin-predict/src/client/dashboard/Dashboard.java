@@ -13,7 +13,7 @@ public class Dashboard  implements ViewDashboard {
     public static void displayDashboard() {
         // Display Price class findings
         price.displayPastPrices();
-        price.displayCurrentDayForecast();
+        price.displayCurrentDayPrediction();
 
         // Display FinancialOpportunities class findings
         financialOpportunities.discoverGrowthRate();
@@ -22,7 +22,7 @@ public class Dashboard  implements ViewDashboard {
 
         // Display FinancialRisks class findings
         financialRisks.havePricesDecreased();
-        financialRisks.doPricesPropagate();
+        financialRisks.havePricesPropagated();
         financialRisks.isCurrentPriceLower();
     }
 
