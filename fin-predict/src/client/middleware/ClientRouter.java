@@ -29,15 +29,11 @@ public class ClientRouter extends ServerRouter {
 
     // Price class calls:
     protected static List<Double> reqPreviousPrices(int daysRequested) {
-        List<Double> resPreviousPrices = new ArrayList<Double>();
-        resPreviousPrices.add(1.0);
-        resPreviousPrices.add(2.0);
-        resPreviousPrices.add(5.0);
-        return resPreviousPrices;
+        return ServerRouter.reqPreviousPrices(daysRequested);
     }
 
     protected static double reqCurrentDayPrediction() {
-        return 1.0;
+        return ServerRouter.reqCurrentDayPrediction();
     }
 
     // FinancialOpportunities class calls:

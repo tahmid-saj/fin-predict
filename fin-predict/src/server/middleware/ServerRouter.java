@@ -5,6 +5,9 @@ import server.database.CSVDatabase;
 import server.database.ImageDatabase;
 import server.model_connection.ModelConnection;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ServerRouter extends Server {
     protected static ModelConnection modelConnection = new ModelConnection();
     protected static CSVDatabase csvDatabase = new CSVDatabase();
@@ -12,17 +15,41 @@ public class ServerRouter extends Server {
     protected static DataAnomalyFinder dataAnomalyFinder = new DataAnomalyFinder();
 
     @Override
-    protected void routeModelConnection() {
-
+    protected String getServerType() {
+        return this.getClass().getName();
     }
 
-    @Override
-    protected void routeDataAnomalyFinder() {
-
+    protected static List<Double> reqPreviousPrices(int daysRequested) {
+        return csvDatabase.getPreviousPrices(daysRequested);
     }
 
-    @Override
-    protected void routeDatabase() {
+    protected static double reqCurrentDayPrediction() {
+        return modelConnection.getCurrentDayPrediction();
+    }
 
+    // FinancialOpportunities class calls:
+    protected static boolean reqGrowthRateIncreasedPastThreshold(int daysObserved, double growthRateThreshold) {
+        return dataAnomalyFinder.getGrowthRateIncreasedPastThreshold(daysObserved, growthRateThreshold);
+    }
+
+    protected static boolean reqHavePricesStabilized(int stabilizedPriceDaysObserved, double stabilizationPlusMinusBoundary) {
+        return dataAnomalyFinder.getHavePricesStabilized(stabilizedPriceDaysObserved, stabilizationPlusMinusBoundary);
+    }
+
+    protected static boolean reqIsCurrentPriceHigher(int avgPreviousPriceDaysObserved) {
+        return dataAnomalyFinder.getIsCurrentPriceHigher(avgPreviousPriceDaysObserved);
+    }
+
+    // FinancialRisks class calls:
+    protected static boolean reqHavePricesDecreased(int financialRiskDaysObserved) {
+        return dataAnomalyFinder.getHavePricesDecreased(financialRiskDaysObserved);
+    }
+
+    protected static boolean reqHavePricesPropagated(int priceRateOfIncreaseDaysObserved, double priceRateOfIncreaseObserved) {
+        return dataAnomalyFinder.getHavePricesPropagated(priceRateOfIncreaseDaysObserved, priceRateOfIncreaseObserved);
+    }
+
+    protected static boolean reqIsCurrentPriceLower(int avgPreviousPriceDaysObserved) {
+        return dataAnomalyFinder.getIsCurrentPriceLower(avgPreviousPriceDaysObserved);
     }
 }

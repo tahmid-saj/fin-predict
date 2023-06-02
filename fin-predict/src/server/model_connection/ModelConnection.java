@@ -2,6 +2,12 @@ package server.model_connection;
 
 import server.middleware.ServerRouter;
 
-public class ModelConnection extends ServerRouter {
+import java.util.ArrayList;
+import java.util.List;
 
+public class ModelConnection {
+
+    public static double getCurrentDayPrediction() {
+        return 1.0;
+    }
 }
