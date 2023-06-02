@@ -1,20 +1,22 @@
 package client.console_interface;
 
-public class Prompt extends Console implements ViewConsole {
-
+public class Prompt extends ConsoleInput implements ViewConsole {
     @Override
-    public void displayForecast() {
+    public void loopInput() {
 
     }
 
     @Override
-    public void refreshOperation() {
+    protected void refreshOperation() {
 
     }
 
     @Override
-    public void readOperation() {
+    protected void readOperation() {
 
     }
 
+    private static void displayForecast() {
+
+    }
 }

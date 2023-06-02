@@ -12,8 +12,11 @@ package client.console_interface;
 // Console class:
 // Abstract class which is used in parallel to the view interface
 // Contains abstract methods for the Input and Dashboard classes
-public abstract class Console {
-    abstract void refreshOperation();
+public abstract class ConsoleInput {
+    abstract void loopInput();
 
-    abstract void readOperation();
+    protected abstract void refreshOperation();
+
+    protected abstract void readOperation();
+
 }

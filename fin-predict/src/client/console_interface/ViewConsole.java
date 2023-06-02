@@ -16,6 +16,8 @@ import java.util.Date;
 public interface ViewConsole {
         static Date today = new Date();
 
-        void displayForecast();
+        private static void displayForecast() {
+
+        }
 }
 

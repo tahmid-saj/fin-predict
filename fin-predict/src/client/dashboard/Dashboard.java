@@ -3,13 +3,11 @@ import client.console_interface.ViewDashboard;
 
 public class Dashboard implements ViewDashboard {
 
-    @Override
-    public void setup() {
+    public static void setup() {
         displayDashboard();
     }
 
-    @Override
-    public void displayDashboard() {
+    public static void displayDashboard() {
         // Display Price class findings
         Price.displayPastPrices();
         Price.displayCurrentDayForecast();
