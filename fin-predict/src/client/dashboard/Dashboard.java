@@ -5,7 +5,7 @@ public class Dashboard implements ViewDashboard {
 
     @Override
     public void setup() {
-
+        displayDashboard();
     }
 
     @Override
