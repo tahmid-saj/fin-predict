@@ -7,6 +7,8 @@ public class FinancialOpportunities extends Dashboard {
     private static int stabilizedPriceDaysObserved = 90;
     private static double stabilizationPlusMinusBoundary = 8.0;
 
+    private static int avgPreviousPriceDaysObserved = 14;
+
     // Checks if growth rate is over the threshold
     private static void discoverGrowthRate(int daysObserved, double growthRateThreshold) {
 
@@ -47,4 +49,8 @@ public class FinancialOpportunities extends Dashboard {
 
     }
 
+    // Checks if the prediction is higher than the average previous price over the time frame
+    private static void isCurrentPriceHigher() {
+
+    }
 }
