@@ -1,9 +1,12 @@
 package client.middleware;
 
+import server.middleware.Server;
+import server.middleware.ServerRouter;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientRouter {
+public class ClientRouter extends ServerRouter {
 
     // Use cases:
 
