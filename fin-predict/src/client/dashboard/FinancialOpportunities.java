@@ -1,6 +1,8 @@
 package client.dashboard;
 
-public class FinancialOpportunities extends Dashboard {
+import client.middleware.RouterClient;
+
+public class FinancialOpportunities extends RouterClient {
     private static int growthRateDaysObserved = 14;
     private static double growthRateThreshold = 20.0;
 

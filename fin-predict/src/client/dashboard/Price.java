@@ -1,7 +1,10 @@
 package client.dashboard;
 import client.console_interface.ViewDashboard;
+import client.middleware.RouterClient;
 
-public class Price extends Dashboard {
+import java.util.List;
+
+public class Price extends RouterClient {
     // Default value of past days of the prices to display
     protected static final int previousDaysDisplay = 14;
 
@@ -13,6 +16,7 @@ public class Price extends Dashboard {
     // Displays past prices if daysToDisplay is not given
     protected void displayPastPrices() {
         // Uses previousDaysDisplay by default
+        List<Double> resPreviousPrices = RouterClient.reqPreviousPrices(previousDaysDisplay);
 
     }
 

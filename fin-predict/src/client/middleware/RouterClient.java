@@ -1,6 +1,7 @@
 package client.middleware;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class RouterClient {
@@ -25,40 +26,40 @@ public class RouterClient {
     //
 
     // Price class calls:
-    protected List<Double> reqPreviousPrices(int daysRequested) {
+    protected static List<Double> reqPreviousPrices(int daysRequested) {
         List<Double> resPreviousPrices = new ArrayList<Double>();
         resPreviousPrices.add(1.0);
         resPreviousPrices.add(2.0);
         return resPreviousPrices;
     }
 
-    protected double reqCurrentDayPrediction() {
+    protected static double reqCurrentDayPrediction() {
         return 1.0;
     }
 
     // FinancialOpportunities class calls:
-    protected boolean reqGrowthRateIncreasedPastThreshold(int daysObserved, double growthRateThreshold) {
+    protected static boolean reqGrowthRateIncreasedPastThreshold(int daysObserved, double growthRateThreshold) {
         return true;
     }
 
-    protected boolean reqHavePricesStabilized(int stabilizedPriceDaysObserved, double stabilizationPlusMinusBoundary) {
+    protected static boolean reqHavePricesStabilized(int stabilizedPriceDaysObserved, double stabilizationPlusMinusBoundary) {
         return true;
     }
 
-    protected boolean reqIsCurrentPriceHigher(int avgPreviousPriceDaysObserved) {
+    protected static boolean reqIsCurrentPriceHigher(int avgPreviousPriceDaysObserved) {
         return true;
     }
 
     // FinancialRisks class calls:
-    protected boolean reqHavePricesDecreased(int financialRiskDaysObserved) {
+    protected static boolean reqHavePricesDecreased(int financialRiskDaysObserved) {
         return true;
     }
 
-    protected boolean reqHavePricesPropagated(int priceRateOfIncreaseDaysObserved, double priceRateOfIncreaseObserved) {
+    protected static boolean reqHavePricesPropagated(int priceRateOfIncreaseDaysObserved, double priceRateOfIncreaseObserved) {
         return true;
     }
 
-    protected boolean reqIsCurrentPriceLower(int avgPreviousPriceDaysObserved) {
+    protected static boolean reqIsCurrentPriceLower(int avgPreviousPriceDaysObserved) {
         return true;
     }
 }

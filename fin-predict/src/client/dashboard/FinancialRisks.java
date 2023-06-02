@@ -1,6 +1,8 @@
 package client.dashboard;
 
-public class FinancialRisks extends Dashboard {
+import client.middleware.RouterClient;
+
+public class FinancialRisks extends RouterClient {
     private static int financialRiskDaysObserved = 90;
 
     private static int priceRateOfIncreaseDaysObserved = 14;

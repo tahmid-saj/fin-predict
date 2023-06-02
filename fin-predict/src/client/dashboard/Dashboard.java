@@ -2,7 +2,7 @@ package client.dashboard;
 import client.console_interface.ViewDashboard;
 import client.middleware.RouterClient;
 
-public class Dashboard extends RouterClient implements ViewDashboard {
+public class Dashboard  implements ViewDashboard {
     protected static Price price = new Price();
     protected static FinancialOpportunities financialOpportunities = new FinancialOpportunities();
     protected static FinancialRisks financialRisks = new FinancialRisks();
