@@ -6,17 +6,17 @@ public class Price extends Dashboard {
     protected static final int previousDaysDisplay = 14;
 
     // Displays past prices if daysToDisplay is given
-    protected static void displayPastPrices(int daysToDisplay) {
+    protected void displayPastPrices(int daysToDisplay) {
 
     }
 
     // Displays past prices if daysToDisplay is not given
-    protected static void displayPastPrices() {
+    protected void displayPastPrices() {
         // Uses previousDaysDisplay by default
     }
 
     // Displays the forecasting prediction of current day
-    protected static void displayCurrentDayForecast() {
+    protected void displayCurrentDayForecast() {
         System.out.println("Displaying forecast for: " + ViewDashboard.today);
     }
 }

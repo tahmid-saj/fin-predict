@@ -2,6 +2,9 @@ package client.dashboard;
 import client.console_interface.ViewDashboard;
 
 public class Dashboard implements ViewDashboard {
+    protected static Price price = new Price();
+    protected static FinancialOpportunities financialOpportunities = new FinancialOpportunities();
+    protected static FinancialRisks financialRisks = new FinancialRisks();
 
     public static void setup() {
         displayDashboard();
@@ -9,18 +12,18 @@ public class Dashboard implements ViewDashboard {
 
     public static void displayDashboard() {
         // Display Price class findings
-        Price.displayPastPrices();
-        Price.displayCurrentDayForecast();
+        price.displayPastPrices();
+        price.displayCurrentDayForecast();
 
         // Display FinancialOpportunities class findings
-        FinancialOpportunities.discoverGrowthRate();
-        FinancialOpportunities.hasPricesStabilized();
-        FinancialOpportunities.isCurrentPriceHigher();
+        financialOpportunities.discoverGrowthRate();
+        financialOpportunities.hasPricesStabilized();
+        financialOpportunities.isCurrentPriceHigher();
 
         // Display FinancialRisks class findings
-        FinancialRisks.havePricesDecreased();
-        FinancialRisks.doPricesPropagate();
-        FinancialRisks.isCurrentPriceLower();
+        financialRisks.havePricesDecreased();
+        financialRisks.doPricesPropagate();
+        financialRisks.isCurrentPriceLower();
     }
 
     // Displays dashboard using user input

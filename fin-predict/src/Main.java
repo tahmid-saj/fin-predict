@@ -1,11 +1,14 @@
 import client.console_interface.Input;
+import client.console_interface.Prompt;
 import client.dashboard.Dashboard;
 
 public class Main {
     public static void main(String[] args) {
-        Input input = new Input();
+        Dashboard dashboard = new Dashboard();
+        Prompt prompt = new Prompt();
 
-        input.displayForecast();
+        dashboard.setup();
+        prompt.loopInput();
 
     }
 }
