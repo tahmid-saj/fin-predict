@@ -13,6 +13,7 @@ public class Price extends Dashboard {
     // Displays past prices if daysToDisplay is not given
     protected void displayPastPrices() {
         // Uses previousDaysDisplay by default
+
     }
 
     // Displays the forecasting prediction of current day
