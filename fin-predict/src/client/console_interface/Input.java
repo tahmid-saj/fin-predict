@@ -1,17 +1,5 @@
 package client.console_interface;
 
-public class Input extends Console implements ViewConsole {
+public class Input extends Prompt {
 
-    @Override
-    public void displayForecast() {
-        System.out.println("Forecast for: " + ViewConsole.today);
-    }
-
-    void refreshOperation() {
-
-    }
-
-    void readOperation() {
-
-    }
 }

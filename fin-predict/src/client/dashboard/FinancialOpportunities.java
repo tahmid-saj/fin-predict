@@ -10,47 +10,52 @@ public class FinancialOpportunities extends Dashboard {
     private static int avgPreviousPriceDaysObserved = 14;
 
     // Checks if growth rate is over the threshold
-    private static void discoverGrowthRate(int daysObserved, double growthRateThreshold) {
+    protected static void discoverGrowthRate(int daysObserved, double growthRateThreshold) {
 
     }
 
     // Checks if growth rate is over the threshold
-    private static void discoverGrowthRate(int daysObserved) {
+    protected static void discoverGrowthRate(int daysObserved) {
 
     }
 
     // Checks if growth rate is over the threshold
-    private static void discoverGrowthRate(double growthRateThreshold) {
+    protected static void discoverGrowthRate(double growthRateThreshold) {
 
     }
 
     // Checks if growth rate is over the threshold
-    private static void discoverGrowthRate() {
+    protected static void discoverGrowthRate() {
 
     }
 
     // Checks if prices have stabilized
-    private static void hasPricesStabilized(int stabilizedPriceDaysObserved, double stabilizationPlusMinusBoundary) {
+    protected static void hasPricesStabilized(int stabilizedPriceDaysObserved, double stabilizationPlusMinusBoundary) {
 
     }
 
     // Checks if prices have stabilized
-    private static void hasPricesStabilized(int stabilizedPriceDaysObserved) {
+    protected static void hasPricesStabilized(int stabilizedPriceDaysObserved) {
 
     }
 
     // Checks if prices have stabilized
-    private static void hasPricesStabilized(double stabilizationPlusMinusBoundary) {
+    protected static void hasPricesStabilized(double stabilizationPlusMinusBoundary) {
 
     }
 
     // Checks if prices have stabilized
-    private static void hasPricesStabilized() {
+    protected static void hasPricesStabilized() {
 
     }
 
     // Checks if the prediction is higher than the average previous price over the time frame
-    private static void isCurrentPriceHigher() {
+    protected static void isCurrentPriceHigher(int avgPreviousPriceDaysObserved) {
+
+    }
+
+    // Checks if the prediction is higher than the average previous price over the time frame
+    protected static void isCurrentPriceHigher() {
 
     }
 }

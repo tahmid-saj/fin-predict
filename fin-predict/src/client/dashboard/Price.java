@@ -3,20 +3,20 @@ import client.console_interface.ViewDashboard;
 
 public class Price extends Dashboard {
     // Default value of past days of the prices to display
-    private static final int previousDaysDisplay = 14;
+    protected static final int previousDaysDisplay = 14;
 
     // Displays past prices if daysToDisplay is given
-    private static void displayPastPrices(int daysToDisplay) {
+    protected static void displayPastPrices(int daysToDisplay) {
 
     }
 
-    // Displays past prices if daysToDisplay
-    private static void displayPastPrices() {
+    // Displays past prices if daysToDisplay is not given
+    protected static void displayPastPrices() {
         // Uses previousDaysDisplay by default
     }
 
     // Displays the forecasting prediction of current day
-    private static void displayCurrentDayForecast() {
+    protected static void displayCurrentDayForecast() {
         System.out.println("Displaying forecast for: " + ViewDashboard.today);
     }
 }

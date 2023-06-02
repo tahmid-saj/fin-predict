@@ -9,37 +9,42 @@ public class FinancialRisks extends Dashboard {
     private static int avgPreviousPriceDaysObserved = 14;
 
     // Checks if price's rate of increase has been negative over time frame
-    private static void havePricesDecreased(int financialRiskDaysObserved) {
+    protected static void havePricesDecreased(int financialRiskDaysObserved) {
 
     }
 
     // Checks if price's rate of increase has been negative over time frame
-    private static void havePricesDecreased() {
+    protected static void havePricesDecreased() {
 
     }
 
     // Checks if price's rate of increase propagates greatly over a time frame
-    private static void doPricesPropagate(int priceRateOfIncreaseDaysObserved, double priceRateOfIncreaseObserved) {
+    protected static void doPricesPropagate(int priceRateOfIncreaseDaysObserved, double priceRateOfIncreaseObserved) {
 
     }
 
     // Checks if price's rate of increase propagates greatly over a time frame
-    private static void doPricesPropagate(int priceRateOfIncreaseDaysObserved) {
+    protected static void doPricesPropagate(int priceRateOfIncreaseDaysObserved) {
 
     }
 
     // Checks if price's rate of increase propagates greatly over a time frame
-    private static void doPricesPropagate(double priceRateOfIncreaseObserved) {
+    protected static void doPricesPropagate(double priceRateOfIncreaseObserved) {
 
     }
 
     // Checks if price's rate of increase propagates greatly over a time frame
-    private static void doPricesPropagate() {
+    protected static void doPricesPropagate() {
 
     }
 
     // Checks if the prediction is higher than the average previous price over the time frame
-    private static void isCurrentPriceLower() {
+    protected static void isCurrentPriceLower(int avgPreviousPriceDaysObserved) {
+
+    }
+
+    // Checks if the prediction is higher than the average previous price over the time frame
+    protected static void isCurrentPriceLower() {
 
     }
 }
