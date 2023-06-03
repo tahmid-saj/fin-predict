@@ -1,4 +1,5 @@
 package client.dashboard;
+import client.console_interface.Prompt;
 import client.console_interface.ViewDashboard;
 
 public class Dashboard implements ViewDashboard {
@@ -8,6 +9,9 @@ public class Dashboard implements ViewDashboard {
 
     public static void setup() {
         displayDashboard();
+
+        Prompt prompt = new Prompt();
+        prompt.loopInput();
     }
 
     protected static void displayDashboard() {

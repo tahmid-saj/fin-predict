@@ -1,7 +1,10 @@
 package client.console_interface;
 
+import client.assets.output_formatter.OutputFormatter;
 import client.dashboard.Dashboard;
 
+import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDateTime;
 import java.util.Scanner;
 
 public class Prompt extends ConsoleInput implements ViewConsole, ViewDashboard {
@@ -21,21 +24,29 @@ public class Prompt extends ConsoleInput implements ViewConsole, ViewDashboard {
 
 
     @Override
-    public void loopInput(boolean close) {
-        close = true;
+    public void loopInput() {
+        boolean close = false;
 
         while (!close) {
-            System.out.println("Would you like to generate a prediction or perform a refresh on the data?");
+            System.out.print("Would you like to generate a prediction / dashboard or perform a refresh on the data? ");
             close = Input.parseInput();
         }
     }
 
     protected static void predictOperation() {
-        request.performPredictOperation();
+        double currentDayPrediction = request.performPredictOperation();
+        LocalDateTime today = LocalDateTime.now();
+        OutputFormatter.printCurrentDayPrediction(today, currentDayPrediction);
     }
 
     protected static void refreshOperation(String begDate, String endDate) {
-        request.performRefreshOperation(begDate, endDate);
+        boolean refreshOperationSuccess = request.performRefreshOperation(begDate, endDate);
+
+        if (!refreshOperationSuccess) {
+            System.out.println("The refresh operation failed");
+        } else {
+            System.out.println("The refresh operation succeeded");
+        }
     }
 
     public static void displayDashboard(int inputPreviousDaysDisplay,

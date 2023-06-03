@@ -12,18 +12,21 @@ public class Input extends Prompt {
             case "predict":
             case "p":
                 parseInputPredictOperation();
+                break;
             case "refresh":
             case "r":
                 parseInputRefreshOperation();
+                break;
             case "dashboard":
             case "d":
                 parseInputDisplayDashboard();
+                break;
             case "close":
             case "cls":
             case "c":
                 return true;
             default:
-                System.out.println("Please either enter predict (p), refresh (r), dashboard (d), close / cls (c)");
+                System.out.println("Please either enter predict (p), refresh (r), dashboard (d), close / cls (c) ");
                 break;
         }
 
