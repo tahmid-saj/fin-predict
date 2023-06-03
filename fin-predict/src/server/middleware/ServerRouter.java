@@ -39,7 +39,7 @@ public class ServerRouter extends Server {
         return dataAnomalyFinder.getHavePricesStabilized(stabilizedPriceDaysObserved, stabilizationPlusMinusBoundary);
     }
 
-    protected static boolean reqIsCurrentPriceHigher(int avgPreviousPriceDaysObserved) {
+    protected static boolean reqIsCurrentPriceHigher(int avgPreviousPriceDaysObserved) throws IOException, ParseException {
         return dataAnomalyFinder.getIsCurrentPriceHigher(avgPreviousPriceDaysObserved);
     }
 
@@ -52,7 +52,7 @@ public class ServerRouter extends Server {
         return dataAnomalyFinder.getHavePricesPropagated(priceRateOfIncreaseDaysObserved, priceRateOfIncreaseObserved);
     }
 
-    protected static boolean reqIsCurrentPriceLower(int avgPreviousPriceDaysObserved) {
+    protected static boolean reqIsCurrentPriceLower(int avgPreviousPriceDaysObserved) throws IOException, ParseException {
         return dataAnomalyFinder.getIsCurrentPriceLower(avgPreviousPriceDaysObserved);
     }
 

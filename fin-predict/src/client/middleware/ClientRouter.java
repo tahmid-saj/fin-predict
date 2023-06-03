@@ -48,8 +48,8 @@ public class ClientRouter extends ServerRouter {
         return true;
     }
 
-    protected static boolean reqIsCurrentPriceHigher(int avgPreviousPriceDaysObserved) {
-        return true;
+    protected static boolean reqIsCurrentPriceHigher(int avgPreviousPriceDaysObserved) throws IOException, ParseException {
+        return ServerRouter.reqIsCurrentPriceHigher(avgPreviousPriceDaysObserved);
     }
 
     // FinancialRisks class calls:
@@ -61,8 +61,8 @@ public class ClientRouter extends ServerRouter {
         return true;
     }
 
-    protected static boolean reqIsCurrentPriceLower(int avgPreviousPriceDaysObserved) {
-        return true;
+    protected static boolean reqIsCurrentPriceLower(int avgPreviousPriceDaysObserved) throws IOException, ParseException {
+        return ServerRouter.reqIsCurrentPriceLower(avgPreviousPriceDaysObserved);
     }
 
     // Request class calls:

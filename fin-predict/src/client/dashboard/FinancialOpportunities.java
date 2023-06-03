@@ -2,6 +2,9 @@ package client.dashboard;
 
 import client.assets.output_formatter.OutputFormatter;
 import client.middleware.ClientRouter;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 
 public class FinancialOpportunities extends ClientRouter {
     private static int growthRateDaysObserved = 14;
@@ -61,13 +64,13 @@ public class FinancialOpportunities extends ClientRouter {
     }
 
     // Checks if the prediction is higher than the average previous price over the time frame
-    protected void isCurrentPriceHigher(int avgPreviousPriceDaysObserved) {
+    protected void isCurrentPriceHigher(int avgPreviousPriceDaysObserved) throws IOException, ParseException {
         boolean resCurrentPriceHigher = ClientRouter.reqIsCurrentPriceHigher(avgPreviousPriceDaysObserved);
         OutputFormatter.printIsCurrentPriceHigher(avgPreviousPriceDaysObserved, resCurrentPriceHigher);
     }
 
     // Checks if the prediction is higher than the average previous price over the time frame
-    protected void isCurrentPriceHigher() {
+    protected void isCurrentPriceHigher() throws IOException, ParseException {
         boolean resCurrentPriceHigher = ClientRouter.reqIsCurrentPriceHigher(avgPreviousPriceDaysObserved);
         OutputFormatter.printIsCurrentPriceHigher(avgPreviousPriceDaysObserved, resCurrentPriceHigher);
     }

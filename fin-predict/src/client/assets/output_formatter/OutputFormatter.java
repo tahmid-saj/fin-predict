@@ -27,7 +27,7 @@ public class OutputFormatter {
 
     // Price class calls:
     public static void printPreviousPrices(List<Double> previousPrices, int daysRequested, List<LocalDateTime> previousDaysToDisplay, Map<LocalDateTime, Double> datePrices) {
-        System.out.println("Previous Days                    | Previous Prices");
+        System.out.println("Previous Days                     | Previous Prices");
         for (LocalDateTime date : datePrices.keySet()) {
             System.out.println(date + "     | " + datePrices.get(date));
         }
