@@ -49,6 +49,16 @@ public class Prompt extends ConsoleInput implements ViewConsole, ViewDashboard {
                                         double inputPricePropagationChange,
                                         int inputAvgPreviousLowerDaysObserved) {
 
+        dashboard.displayUserInputDashboard(inputPreviousDaysDisplay,
+                                            inputIncreaseDaysObserved,
+                                            inputGrowthRateThreshold,
+                                            inputDaysObservePriceStabilization,
+                                            inputStabilizationBoundary,
+                                            inputAvgPreviousHigherDaysObserved,
+                                            inputDecreaseDaysObserved,
+                                            inputPricePropagationDaysObserved,
+                                            inputPricePropagationChange,
+                                            inputAvgPreviousLowerDaysObserved);
     }
 
 }

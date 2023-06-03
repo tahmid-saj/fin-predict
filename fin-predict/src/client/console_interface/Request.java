@@ -6,11 +6,11 @@ public class Request extends ClientRouter {
 
     // Returns current day prediction
     protected double performPredictOperation() {
-        
+        return ClientRouter.reqCurrentDayPrediction();
     }
 
     // Returns if the refresh was performed
     protected boolean performRefreshOperation(String begDate, String endDate) {
-
+        return ClientRouter.reqRefreshOperation(begDate, endDate);
     }
 }

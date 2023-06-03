@@ -25,9 +25,10 @@ public class ClientRouter extends ServerRouter {
     // - Checking if prediction is lower than the current average over time frame requested -> Calls RouterServer to call DataAnomalyFinder
 
     // Request class:
-    //
+    // - Requesting current day's prediction
+    // - Requesting refresh operation on database
 
-    // Price class calls:
+    // Price / Request class calls:
     protected static List<Double> reqPreviousPrices(int daysRequested) {
         return ServerRouter.reqPreviousPrices(daysRequested);
     }
@@ -59,6 +60,11 @@ public class ClientRouter extends ServerRouter {
     }
 
     protected static boolean reqIsCurrentPriceLower(int avgPreviousPriceDaysObserved) {
+        return true;
+    }
+
+    // Request class calls:
+    protected static boolean reqRefreshOperation(String begDate, String endDate) {
         return true;
     }
 }
