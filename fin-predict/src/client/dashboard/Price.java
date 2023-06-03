@@ -1,7 +1,9 @@
 package client.dashboard;
 import client.assets.output_formatter.OutputFormatter;
 import client.middleware.ClientRouter;
+import org.json.simple.parser.ParseException;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -43,7 +45,7 @@ public class Price extends ClientRouter {
     }
 
     // Displays the forecasting prediction of current day
-    protected void displayCurrentDayPrediction() {
+    protected void displayCurrentDayPrediction() throws IOException, ParseException {
         double resCurrentDayPrediction = ClientRouter.reqCurrentDayPrediction();
         OutputFormatter.printCurrentDayPrediction(today, resCurrentDayPrediction);
     }

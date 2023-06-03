@@ -13,9 +13,9 @@ package client.console_interface;
 // Abstract class which is used in parallel to the view interface
 // Contains abstract methods for the Input and Dashboard classes
 public abstract class ConsoleInput {
-    abstract void loopInput();
+    abstract void loopInput() throws Exception;
 
-    protected static void predictOperation() {
+    protected static void predictOperation() throws Exception {
     }
 
     protected static void refreshOperation(String begDate, String endDate) {

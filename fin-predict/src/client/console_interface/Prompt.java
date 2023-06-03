@@ -2,7 +2,9 @@ package client.console_interface;
 
 import client.assets.output_formatter.OutputFormatter;
 import client.dashboard.Dashboard;
+import org.json.simple.parser.ParseException;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDateTime;
 import java.util.Scanner;
@@ -24,7 +26,7 @@ public class Prompt extends ConsoleInput implements ViewConsole, ViewDashboard {
 
 
     @Override
-    public void loopInput() {
+    public void loopInput() throws Exception {
         boolean close = false;
 
         while (!close) {
@@ -33,7 +35,7 @@ public class Prompt extends ConsoleInput implements ViewConsole, ViewDashboard {
         }
     }
 
-    protected static void predictOperation() {
+    protected static void predictOperation() throws Exception {
         double currentDayPrediction = request.performPredictOperation();
         LocalDateTime today = LocalDateTime.now();
         OutputFormatter.printCurrentDayPrediction(today, currentDayPrediction);
@@ -58,7 +60,7 @@ public class Prompt extends ConsoleInput implements ViewConsole, ViewDashboard {
                                         int inputDecreaseDaysObserved,
                                         int inputPricePropagationDaysObserved,
                                         double inputPricePropagationChange,
-                                        int inputAvgPreviousLowerDaysObserved) {
+                                        int inputAvgPreviousLowerDaysObserved) throws IOException, ParseException {
 
         dashboard.displayUserInputDashboard(inputPreviousDaysDisplay,
                                             inputIncreaseDaysObserved,

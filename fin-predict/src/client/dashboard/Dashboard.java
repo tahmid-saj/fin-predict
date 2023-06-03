@@ -1,20 +1,23 @@
 package client.dashboard;
 import client.console_interface.Prompt;
 import client.console_interface.ViewDashboard;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 
 public class Dashboard implements ViewDashboard {
     protected static Price price = new Price();
     protected static FinancialOpportunities financialOpportunities = new FinancialOpportunities();
     protected static FinancialRisks financialRisks = new FinancialRisks();
 
-    public static void setup() {
+    public static void setup() throws Exception {
         displayDashboard();
 
         Prompt prompt = new Prompt();
         prompt.loopInput();
     }
 
-    protected static void displayDashboard() {
+    protected static void displayDashboard() throws IOException, ParseException {
         // Display Price class findings
         price.displayPastPrices();
         price.displayCurrentDayPrediction();
@@ -40,7 +43,7 @@ public class Dashboard implements ViewDashboard {
                                           int inputDecreaseDaysObserved,
                                           int inputPricePropagationDaysObserved,
                                           double inputPricePropagationChange,
-                                          int inputAvgPreviousLowerDaysObserved) {
+                                          int inputAvgPreviousLowerDaysObserved) throws IOException, ParseException {
 
         // Display Price class findings
         price.displayPastPrices(inputPreviousDaysDisplay);

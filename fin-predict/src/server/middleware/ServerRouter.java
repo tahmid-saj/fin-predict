@@ -1,10 +1,12 @@
 package server.middleware;
 
+import org.json.simple.parser.ParseException;
 import server.data_anomaly_finder.DataAnomalyFinder;
 import server.database.CSVDatabase;
 import server.database.ImageDatabase;
 import server.model_connection.ModelConnection;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class ServerRouter extends Server {
         return csvDatabase.getPreviousPrices(daysRequested);
     }
 
-    protected static double reqCurrentDayPrediction() {
+    protected static double reqCurrentDayPrediction() throws IOException, ParseException {
         return modelConnection.getCurrentDayPrediction();
     }
 

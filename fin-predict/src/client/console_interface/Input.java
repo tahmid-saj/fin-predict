@@ -1,10 +1,13 @@
 package client.console_interface;
 
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Input extends Prompt {
 
-    protected static boolean parseInput() {
+    protected static boolean parseInput() throws Exception {
         Scanner input = new Scanner(System.in);
         String inputString = input.nextLine().toLowerCase();
 
@@ -33,7 +36,7 @@ public class Input extends Prompt {
         return false;
     }
 
-    private static void parseInputPredictOperation() {
+    private static void parseInputPredictOperation() throws Exception {
         Prompt.predictOperation();
     }
 
@@ -48,7 +51,7 @@ public class Input extends Prompt {
         Prompt.refreshOperation(inputStringBegDate, inputStringEndDate);
     }
 
-    private static void parseInputDisplayDashboard() {
+    private static void parseInputDisplayDashboard() throws IOException, ParseException {
         Scanner input = new Scanner(System.in);
 
         // Prices class

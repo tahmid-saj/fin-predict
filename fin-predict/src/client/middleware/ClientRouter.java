@@ -1,8 +1,10 @@
 package client.middleware;
 
+import org.json.simple.parser.ParseException;
 import server.middleware.Server;
 import server.middleware.ServerRouter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +35,7 @@ public class ClientRouter extends ServerRouter {
         return ServerRouter.reqPreviousPrices(daysRequested);
     }
 
-    protected static double reqCurrentDayPrediction() {
+    protected static double reqCurrentDayPrediction() throws IOException, ParseException {
         return ServerRouter.reqCurrentDayPrediction();
     }
 
