@@ -17,7 +17,7 @@ public class Dashboard  implements ViewDashboard {
 
         // Display FinancialOpportunities class findings
         financialOpportunities.discoverGrowthRate();
-        financialOpportunities.hasPricesStabilized();
+        financialOpportunities.havePricesStabilized();
         financialOpportunities.isCurrentPriceHigher();
 
         // Display FinancialRisks class findings

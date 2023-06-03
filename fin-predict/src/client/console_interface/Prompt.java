@@ -1,9 +1,12 @@
 package client.console_interface;
 
+import client.dashboard.Dashboard;
+
 import java.util.Scanner;
 
 public class Prompt extends ConsoleInput implements ViewConsole, ViewDashboard {
-    Request request = new Request();
+    private static Request request = new Request();
+    private static Dashboard dashboard = new Dashboard();
 
     // Use cases:
     // - lookInput : Prompts user until they choose to exit the app. Asks if user would like to perform the below operations:
@@ -14,7 +17,6 @@ public class Prompt extends ConsoleInput implements ViewConsole, ViewDashboard {
 
     // - refreshOperation: Performs a refresh on the database
     // - predictOperation: Displays current day's prediction or the dashboard using user input
-    // - displayPrediction: Is called from predictOperation
     // - displayDashboard: Displays dashboard using user input
 
 
@@ -26,21 +28,26 @@ public class Prompt extends ConsoleInput implements ViewConsole, ViewDashboard {
             System.out.println("Would you like to generate a prediction or perform a refresh on the data?");
             close = Input.parseInput();
         }
-
-
     }
 
-    @Override
-    protected void refreshOperation() {
-
+    protected static void predictOperation() {
+        request.performPredictOperation();
     }
 
-    @Override
-    protected void predictOperation() {
-
+    protected static void refreshOperation(String begDate, String endDate) {
+        request.performRefreshOperation(begDate, endDate);
     }
 
-    public static void displayDashboard() {
+    public static void displayDashboard(int inputPreviousDaysDisplay,
+                                        int inputIncreaseDaysObserved,
+                                        double inputGrowthRateThreshold,
+                                        int inputDaysObservePriceStabilization,
+                                        double inputStabilizationBoundary,
+                                        int inputAvgPreviousHigherDaysObserved,
+                                        int inputDecreaseDaysObserved,
+                                        int inputPricePropagationDaysObserved,
+                                        double inputPricePropagationChange,
+                                        int inputAvgPreviousLowerDaysObserved) {
 
     }
 

@@ -15,8 +15,10 @@ package client.console_interface;
 public abstract class ConsoleInput {
     abstract void loopInput(boolean close);
 
-    protected abstract void refreshOperation();
+    protected static void predictOperation() {
+    }
 
-    protected abstract void predictOperation();
+    protected static void refreshOperation(String begDate, String endDate) {
 
+    }
 }

@@ -37,25 +37,25 @@ public class FinancialOpportunities extends ClientRouter {
     }
 
     // Checks if prices have stabilized
-    protected void hasPricesStabilized(int stabilizedPriceDaysObserved, double stabilizationPlusMinusBoundary) {
+    protected void havePricesStabilized(int stabilizedPriceDaysObserved, double stabilizationPlusMinusBoundary) {
         boolean resPricesStabilized = ClientRouter.reqHavePricesStabilized(stabilizedPriceDaysObserved, stabilizationPlusMinusBoundary);
         OutputFormatter.printHavePricesStabilized(stabilizedPriceDaysObserved, stabilizationPlusMinusBoundary, resPricesStabilized);
     }
 
     // Checks if prices have stabilized
-    protected void hasPricesStabilized(int stabilizedPriceDaysObserved) {
+    protected void havePricesStabilized(int stabilizedPriceDaysObserved) {
         boolean resPricesStabilized = ClientRouter.reqHavePricesStabilized(stabilizedPriceDaysObserved, stabilizationPlusMinusBoundary);
         OutputFormatter.printHavePricesStabilized(stabilizedPriceDaysObserved, stabilizationPlusMinusBoundary, resPricesStabilized);
     }
 
     // Checks if prices have stabilized
-    protected void hasPricesStabilized(double stabilizationPlusMinusBoundary) {
+    protected void havePricesStabilized(double stabilizationPlusMinusBoundary) {
         boolean resPricesStabilized = ClientRouter.reqHavePricesStabilized(stabilizedPriceDaysObserved, stabilizationPlusMinusBoundary);
         OutputFormatter.printHavePricesStabilized(stabilizedPriceDaysObserved, stabilizationPlusMinusBoundary, resPricesStabilized);
     }
 
     // Checks if prices have stabilized
-    protected void hasPricesStabilized() {
+    protected void havePricesStabilized() {
         boolean resPricesStabilized = ClientRouter.reqHavePricesStabilized(stabilizedPriceDaysObserved, stabilizationPlusMinusBoundary);
         OutputFormatter.printHavePricesStabilized(stabilizedPriceDaysObserved, stabilizationPlusMinusBoundary, resPricesStabilized);
     }
