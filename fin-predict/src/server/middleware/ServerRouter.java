@@ -19,6 +19,7 @@ public class ServerRouter extends Server {
         return this.getClass().getName();
     }
 
+    // Price / Request class calls:
     protected static List<Double> reqPreviousPrices(int daysRequested) {
         return csvDatabase.getPreviousPrices(daysRequested);
     }
@@ -51,5 +52,10 @@ public class ServerRouter extends Server {
 
     protected static boolean reqIsCurrentPriceLower(int avgPreviousPriceDaysObserved) {
         return dataAnomalyFinder.getIsCurrentPriceLower(avgPreviousPriceDaysObserved);
+    }
+
+    // Request class calls:
+    protected static boolean reqRefreshOperation(String begDate, String endDate) {
+        return csvDatabase.doRefreshOperation(begDate, endDate);
     }
 }

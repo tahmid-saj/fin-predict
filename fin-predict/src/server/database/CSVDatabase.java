@@ -16,4 +16,7 @@ public class CSVDatabase extends ServerRouter implements Database {
         return resPreviousPrices;
     }
 
+    public static boolean doRefreshOperation(String bedDate, String endDate) {
+        return true;
+    }
 }
