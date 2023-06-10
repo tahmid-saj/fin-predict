@@ -77,8 +77,9 @@ public class DataAnomalyFinder extends ServerRouter {
                     double rowFirstPrice = Double.valueOf(rowListFirst[1]);
                     double rowSecondPrice = Double.valueOf(rowListSecond[1]);
                     double rowPriceDiff = rowSecondPrice - rowFirstPrice;
+                    double rowPriceOriginal = (1 + (stabilizationPlusMinusBoundary / 100.0)) * rowFirstPrice;
 
-                    if (Math.abs(rowPriceDiff) > Math.abs(stabilizationPlusMinusBoundary)) {
+                    if (Math.abs(rowPriceDiff) > rowPriceOriginal) {
                         return true;
                     }
                 }
