@@ -10,7 +10,6 @@ import java.util.*;
 
 public class Price extends ClientRouter {
     private static LocalDateTime today = LocalDateTime.now();
-    private static final double MILLISECS_IN_A_DAY = 1000 * 60 * 60 * 24;
 
     // Default value of past days of the prices to display
     protected static final int previousDaysDisplay = 3;
