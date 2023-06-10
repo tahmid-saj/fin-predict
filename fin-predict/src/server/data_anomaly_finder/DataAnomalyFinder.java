@@ -23,16 +23,18 @@ public class DataAnomalyFinder extends ServerRouter {
             String tmp = scannerSecondLine.nextLine();
 
             int lineNum = 0;
-            while (scannerSecondLine.hasNextLine() && lineNum <= daysObserved) {
+            while (scannerSecondLine.hasNextLine() && lineNum <= daysObserved - 1) {
                 String rowFirst = scannerFirstLine.nextLine();
                 String rowSecond = scannerSecondLine.nextLine();
 
                 if (lineNum > 0) {
                     String[] rowListFirst = rowFirst.split(",");
                     String[] rowListSecond = rowSecond.split(",");
+
                     double rowFirstPrice = Double.valueOf(rowListFirst[1]);
                     double rowSecondPrice = Double.valueOf(rowListSecond[1]);
                     double rowGrowthRate = (rowSecondPrice / rowFirstPrice) * 100.0;
+
                     avgGrowthRate += rowGrowthRate;
                 }
 
@@ -49,14 +51,47 @@ public class DataAnomalyFinder extends ServerRouter {
             scannerSecondLine.close();
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
-            e.printStackTrace();;
+            e.printStackTrace();
         }
 
         return false;
     }
 
     public static boolean getHavePricesStabilized(int stabilizedPriceDaysObserved, double stabilizationPlusMinusBoundary) {
-        return true;
+        try {
+            File file = new File("data/database/btc_prices.csv");
+            Scanner scannerFirstLine = new Scanner(file);
+            Scanner scannerSecondLine = new Scanner(file);
+
+            String tmp = scannerSecondLine.nextLine();
+
+            int lineNum = 0;
+            while (scannerSecondLine.hasNextLine() && lineNum <= stabilizedPriceDaysObserved - 1) {
+                String rowFirst = scannerFirstLine.nextLine();
+                String rowSecond = scannerSecondLine.nextLine();
+
+                if (lineNum > 0) {
+                    String[] rowListFirst = rowFirst.split(",");
+                    String[] rowListSecond = rowSecond.split(",");
+
+                    double rowFirstPrice = Double.valueOf(rowListFirst[1]);
+                    double rowSecondPrice = Double.valueOf(rowListSecond[1]);
+                    double rowPriceDiff = rowSecondPrice - rowFirstPrice;
+
+                    if (Math.abs(rowPriceDiff) > Math.abs(stabilizationPlusMinusBoundary)) {
+                        return true;
+                    }
+                }
+            }
+
+            scannerFirstLine.close();
+            scannerSecondLine.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+            e.printStackTrace();
+        }
+
+        return false;
     }
 
     public static boolean getIsCurrentPriceHigher(int avgPreviousPriceDaysObserved) throws IOException, ParseException {
