@@ -148,7 +148,39 @@ public class DataAnomalyFinder extends ServerRouter {
     }
 
     public static boolean getHavePricesPropagated(int priceRateOfIncreaseDaysObserved, double priceRateOfIncreaseObserved) {
-        return true;
+        try {
+            File file = new File("data/database/btc_prices.csv");
+            Scanner scannerFirstLine = new Scanner(file);
+            Scanner scannerSecondLine = new Scanner(file);
+
+            String tmp = scannerSecondLine.nextLine();
+
+            int lineNum = 0;
+            while (scannerSecondLine.hasNextLine() && lineNum <= priceRateOfIncreaseDaysObserved - 1) {
+                String rowFirst = scannerFirstLine.nextLine();
+                String rowSecond = scannerSecondLine.nextLine();
+
+                if (lineNum > 0) {
+                    String[] rowListFirst = rowFirst.split(",");
+                    String[] rowListSecond = rowSecond.split(",");
+
+                    double rowFirstPrice = Double.valueOf(rowListFirst[1]);
+                    double rowSecondPrice = Double.valueOf(rowListSecond[1]);
+
+                    if (rowSecondPrice - rowFirstPrice > priceRateOfIncreaseObserved) {
+                        return true;
+                    }
+                }
+            }
+
+            scannerFirstLine.close();
+            scannerSecondLine.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+            e.printStackTrace();
+        }
+
+        return false;
     }
 
     public static boolean getIsCurrentPriceLower(int avgPreviousPriceDaysObserved) throws IOException, ParseException {
