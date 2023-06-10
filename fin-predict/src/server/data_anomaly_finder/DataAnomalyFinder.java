@@ -102,7 +102,48 @@ public class DataAnomalyFinder extends ServerRouter {
 
     // FinancialRisks class calls:
     public static boolean getHavePricesDecreased(int financialRiskDaysObserved) {
-        return true;
+        double totalPriceDecrease = 0.0;
+        double totalPriceIncrease = 0.0;
+
+        try {
+            File file = new File("data/database/btc_prices.csv");
+            Scanner scannerFirstLine = new Scanner(file);
+            Scanner scannerSecondLine = new Scanner(file);
+
+            String tmp = scannerSecondLine.nextLine();
+
+            int lineNum = 0;
+            while (scannerSecondLine.hasNextLine() && lineNum <= financialRiskDaysObserved - 1) {
+                String rowFirst = scannerFirstLine.nextLine();
+                String rowSecond = scannerSecondLine.nextLine();
+
+                if (lineNum > 0) {
+                    String[] rowListFirst = rowFirst.split(",");
+                    String[] rowListSecond = rowSecond.split(",");
+
+                    double rowFirstPrice = Double.valueOf(rowListFirst[1]);
+                    double rowSecondPrice = Double.valueOf(rowListSecond[1]);
+
+                    if (rowSecondPrice - rowFirstPrice < 0) {
+                        totalPriceDecrease += rowSecondPrice - rowFirstPrice;
+                    } else {
+                        totalPriceIncrease += rowSecondPrice - rowFirstPrice;
+                    }
+                }
+            }
+
+            if (Math.abs(totalPriceDecrease) > Math.abs(totalPriceIncrease)) {
+                return true;
+            }
+
+            scannerFirstLine.close();
+            scannerSecondLine.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+            e.printStackTrace();
+        }
+
+        return false;
     }
 
     public static boolean getHavePricesPropagated(int priceRateOfIncreaseDaysObserved, double priceRateOfIncreaseObserved) {
