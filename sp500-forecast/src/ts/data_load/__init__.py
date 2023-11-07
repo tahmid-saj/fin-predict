@@ -1,1 +1,0 @@
-from ts.data_load.sp_prices_load import *
