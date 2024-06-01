@@ -16,11 +16,25 @@ public class FinPredictController {
 //    @Value("${aboutCardsImages}")
 //    private List<String> aboutCardsImages;
 
+    @Value("${marketDataCategories}")
+    private List<String> marketDataCategories;
+
+    @Value("${marketDataIntervals}")
+    private List<String> marketDataIntervals;
+
     @GetMapping("/")
     public String about(Model model) {
         model.addAttribute("navigationLinksHeaders", navigationLinksHeaders);
 //        model.addAttribute("aboutCardsImages", aboutCardsImages);
 
         return "about/about";
+    }
+
+    @GetMapping("/market")
+    public String market(Model model) {
+        model.addAttribute("marketDataCategories", marketDataCategories);
+        model.addAttribute("marketDataIntervals", marketDataIntervals);
+
+        return "marketdata/marketdata";
     }
 }
