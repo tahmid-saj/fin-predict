@@ -1,0 +1,14 @@
+.market-data-container {
+    border-radius: 1.001rem;
+    background-color: #f2e9e4;
+    box-shadow: 1.5px 1.5px #9a8c98;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2% 20% 2% 20%;
+    padding: 2%;
+}
+
+.market-data-form {
+    width: 100%;
+}
