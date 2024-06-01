@@ -14,7 +14,7 @@
 
 <!--    internal styles-->
     <link rel="stylesheet" th:href="@{/shared/index.css}"/>
-    <link rel="stylesheet" th:href="@{/css/market.css}"/>
+    <link rel="stylesheet" th:href="@{/css/predictor.css}"/>
 
 <!--    graph links-->
     <link rel="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
@@ -77,54 +77,17 @@
         </div>
     </nav>
 
-    <div class="market-data-container">
-        <form class="market-data-form">
-            <h5>Search market data</h5>
-            <div class="form-row p-2">
-                <div class="form-group">
-                    <label for="inputCategory">Category</label>
-                    <select id="inputCategory" class="form-control">
-                        <option th:each="category : ${marketDataCategories}"
-                                th:value="${category}" th:text="${category}"></option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="inputTicker">Ticker</label>
-                    <input type="ticker" class="form-control" id="inputTicker" placeholder="BTCUSD">
-                </div>
-            </div>
-
-            <div class="form-group p-2">
-                <div class="form-group">
-                    <label for="inputInterval">Interval</label>
-                    <select id="inputInterval" class="form-control">
-                        <option th:each="interval : ${marketDataIntervals}"
-                                th:value="${interval}" th:text="${interval}"></option>
-                    </select>
-                </div>
-
-                <label for="inputStartDate">Start date</label>
-                <input type="date" class="form-control" id="inputStartDate">
-
-                <label for="inputEndDate">End date</label>
-                <input type="date" class="form-control" id="inputEndDate">
-            </div>
-
-            <button type="submit" class="btn btn-dark m-2 pt-2 pr-5 pl-5 pb-2">Search</button>
-            <button type="button" class="btn btn-secondary m-2 pt-2 pr-5 pl-5 pb-2">Clear</button>
-        </form>
-
-        <div class="market-data-graph">
-            <h4>Market data</h4>
+    <div class="predictor-container">
+        <div class="predictor-graph">
+            <h4>Prediction data</h4>
             <div>
-                <canvas id="marketDataGraph"></canvas>
+                <canvas id="predictorGraph"></canvas>
             </div>
         </div>
 
         <script>
-            let ctx = document.getElementById("marketDataGraph").getContext("2d");
-            let marketDataGraph = new Chart(ctx, {
+            let ctx = document.getElementById("predictorGraph").getContext("2d");
+            let predictorGraph = new Chart(ctx, {
                 type: "line",
                 data: {
                     labels: [
@@ -147,7 +110,7 @@
             });
         </script>
 
-        <div class="market-data-table">
+        <div class="predictor-table">
             <table class="table table-bordered table-striped">
                 <thead class="table-dark">
                 <tr>
