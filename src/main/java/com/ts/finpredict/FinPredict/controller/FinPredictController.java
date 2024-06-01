@@ -51,4 +51,9 @@ public class FinPredictController {
 
         return "predictor/predictor";
     }
+
+    @GetMapping("/advice")
+    public String advice(Model model) {
+        return "advice/advice";
+    }
 }
