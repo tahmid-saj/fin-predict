@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fin Predict</title>
+
+<!--    bootstrap styles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+<!--    ion icons-->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<!--    internal styles-->
+    <link rel="stylesheet" th:href="@{/shared/index.css}"/>
+    <link rel="stylesheet" th:href="@{/css/about.css}"/>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light m-3 p-3">
+        <a class="navbar-brand" href="">Fin Predict</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/market">Market</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/predictor">Predictor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/advice">Chatbot</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/advice">Advice</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/tahmid-saj/fin-predict"><ion-icon name="logo-github"></ion-icon></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><ion-icon name="logo-medium"></ion-icon></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://ca.linkedin.com/in/tsajin"><ion-icon name="logo-linkedin"></ion-icon></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.tahmidsajin.com">tahmidsajin.com</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="about-cards-container">
+        <div class="card" style="width: 22rem; height: 30rem;">
+            <img class="card-img-top" src="https://static.vecteezy.com/system/resources/previews/014/563/665/original/investment-forecast-or-prediction-vision-to-see-investing-opportunity-future-profit-from-stock-and-crypto-trading-concept-flat-modern-illustration-vector.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${navigationLinksHeaders.get(1)}"></h5>
+                <p class="card-text">Get current and historical market data on stocks, indices, crypto and foreign exchange.</p>
+                <a href="/market" class="btn btn-secondary">Learn more</a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 22rem; height: 30rem;">
+            <img class="card-img-top" src="https://media.istockphoto.com/id/1189915287/vector/business-team-and-successful-financial-strategy.jpg?s=612x612&w=0&k=20&c=bk1TpF1dhIQ2znV_0veCQ6yY-QSud0m7-CzE6GCJ5QQ=" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${navigationLinksHeaders.get(2)}"></h5>
+                <p class="card-text">A bitcoin and stock predictor developed to inform of any potential investment opportunities or downfalls.</p>
+                <a href="/predictor" class="btn btn-secondary">Learn more</a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 22rem; height: 30rem;">
+            <img class="card-img-top" src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/334804806/original/793cad2ae511c4c9b30c1d5e8206b8eb8ab21087/create-a-ai-chat-bot-embedded-website-for-you.png" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${navigationLinksHeaders.get(3)}"></h5>
+                <p class="card-text">Provide your financial concerns and ask for suggestions from our chatbot.</p>
+                <a href="/advice" class="btn btn-secondary">Learn more</a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 22rem; height: 30rem;">
+            <img class="card-img-top" src="https://assets.materialup.com/uploads/e497008a-3de3-4321-85de-a887c5e1fe43/preview.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${navigationLinksHeaders.get(4)}"></h5>
+                <p class="card-text">Receive weekly financial advice depending on the current economy and market.</p>
+                <a href="/advice" class="btn btn-secondary">Learn more</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
