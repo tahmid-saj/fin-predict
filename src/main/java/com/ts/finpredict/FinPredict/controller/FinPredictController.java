@@ -22,11 +22,11 @@ public class FinPredictController {
     @Value("${marketDataIntervals}")
     private List<String> marketDataIntervals;
 
-    @Value("${predictionHeaders}")
-    private List<String> predictionHeaders;
+    @Value("${predictorHeaders}")
+    private List<String> predictorHeaders;
 
-    @Value("${predictionIntervals}")
-    private List<String> predictionIntervals;
+    @Value("${predictorIntervals}")
+    private List<String> predictorIntervals;
 
     @GetMapping("/")
     public String about(Model model) {
@@ -46,8 +46,8 @@ public class FinPredictController {
 
     @GetMapping("/predictor")
     public String predictor(Model model) {
-        model.addAttribute("predictionHeaders", predictionHeaders);
-        model.addAttribute("predictionIntervals", predictionIntervals);
+        model.addAttribute("predictorHeaders", predictorHeaders);
+        model.addAttribute("predictorIntervals", predictorIntervals);
 
         return "predictor/predictor";
     }
