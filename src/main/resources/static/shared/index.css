@@ -1,3 +1,7 @@
 body {
-    background-color: #E0CCBE !important;
+    background-color: #495057 !important;
+}
+
+.navbar {
+    background-color: #ced4da;
 }
