@@ -78,8 +78,29 @@
     </nav>
 
     <div class="predictor-container">
+        <h4 class="predictor-header" th:text="${predictorHeaders.get(0)}"></h4>
+
+        <h5 th:text="${predictorIntervals.get(0)} + ' predictions'"></h5>
+        <table class="daily-predictor-table table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Date</th>
+                    <th>Closing Price</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>2024-06-01</td>
+                    <td>100</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <h5 th:text="${predictorIntervals.get(1)} + ' predictions'"></h5>
         <div class="predictor-graph">
-            <h4>Prediction data</h4>
+            <h4>BTC predictions</h4>
             <div>
                 <canvas id="predictorGraph"></canvas>
             </div>
@@ -113,29 +134,29 @@
         <div class="predictor-table">
             <table class="table table-bordered table-striped">
                 <thead class="table-dark">
-                <tr>
-                    <th>Date</th>
-                    <th>Closing Price</th>
-                </tr>
+                    <tr>
+                        <th>Date</th>
+                        <th>Closing Price</th>
+                    </tr>
                 </thead>
 
                 <tbody>
-                <tr>
-                    <td>2024-06-01</td>
-                    <td>100</td>
-                </tr>
-                <tr>
-                    <td>2024-06-01</td>
-                    <td>100</td>
-                </tr>
-                <tr>
-                    <td>2024-06-01</td>
-                    <td>100</td>
-                </tr>
-                <tr>
-                    <td>2024-06-01</td>
-                    <td>100</td>
-                </tr>
+                    <tr>
+                        <td>2024-06-01</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>2024-06-01</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>2024-06-01</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>2024-06-01</td>
+                        <td>100</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
