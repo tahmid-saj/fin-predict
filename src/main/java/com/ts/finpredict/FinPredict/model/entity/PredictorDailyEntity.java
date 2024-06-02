@@ -1,12 +1,15 @@
 package com.ts.finpredict.FinPredict.model.entity;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.springframework.context.annotation.Lazy;
 
 @Entity
 @Table(name="predictor_daily")
+@Lazy
 public class PredictorDailyEntity {
 
     @Id
@@ -47,5 +50,15 @@ public class PredictorDailyEntity {
                 "currentDay='" + currentDay + '\'' +
                 ", closingPrice='" + closingPrice + '\'' +
                 '}';
+    }
+
+    @PostConstruct
+    public void doStartUpStuff() {
+        System.out.println("Starting " + getClass().getSimpleName());
+    }
+
+    @PostConstruct
+    public void doCleanupUpStuff() {
+        System.out.println("Cleaning " + getClass().getSimpleName());
     }
 }

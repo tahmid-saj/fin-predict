@@ -6,7 +6,11 @@ import com.ts.finpredict.FinPredict.controller.marketdata.MarketDataWorker;
 import com.ts.finpredict.FinPredict.controller.predictor.PredictorWorker;
 import com.ts.finpredict.FinPredict.model.entity.Chatbot;
 import com.ts.finpredict.FinPredict.model.entity.MarketData;
+import com.ts.finpredict.FinPredict.model.entity.PredictorDailyEntity;
+import com.ts.finpredict.FinPredict.model.entity.PredictorWeeklyEntity;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,8 +62,34 @@ public class FinPredictController {
     AdviceWorker adviceWorker = new AdviceWorker();
     ChatbotWorker chatbotWorker = new ChatbotWorker();
 
+//    private PredictorDailyEntity predictorDailyEntity;
+//    private PredictorWeeklyEntity predictorWeeklyEntity;
+
+    @Autowired
     public FinPredictController() throws Exception {
     }
+
+//    constructor injection
+//    @Autowired
+//    public FinPredictController(
+//            @Qualifier("PredictorDailyEntity") PredictorDailyEntity predictorDailyEntity,
+//            @Qualifier("PredictorWeeklyEntity") PredictorWeeklyEntity predictorWeeklyEntity
+//    ) throws Exception {
+//        this.predictorDailyEntity = predictorDailyEntity;
+//        this.predictorWeeklyEntity = predictorWeeklyEntity;
+//    }
+
+//    setter injection
+//    @Autowired
+//    public void setPredictorDailyEntity(PredictorDailyEntity predictorDailyEntity) {
+//        this.predictorDailyEntity = predictorDailyEntity;
+//    }
+
+//    setter injection
+//    @Autowired
+//    public void setPredictorWeeklyEntity(PredictorWeeklyEntity predictorWeeklyEntity) {
+//        this.predictorWeeklyEntity = predictorWeeklyEntity;
+//    }
 
     @GetMapping("/")
     public String about(Model model) {
