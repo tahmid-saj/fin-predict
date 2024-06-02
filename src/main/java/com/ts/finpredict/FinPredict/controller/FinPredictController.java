@@ -1,12 +1,18 @@
 package com.ts.finpredict.FinPredict.controller;
 
+import com.ts.finpredict.FinPredict.controller.marketdata.MarketDataWorker;
+import com.ts.finpredict.FinPredict.model.entity.MarketData;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class FinPredictController {
@@ -28,6 +34,8 @@ public class FinPredictController {
     @Value("${predictorIntervals}")
     private List<String> predictorIntervals;
 
+    MarketDataWorker marketDataWorker = new MarketDataWorker();
+
     @GetMapping("/")
     public String about(Model model) {
         model.addAttribute("navigationLinksHeaders", navigationLinksHeaders);
@@ -40,8 +48,21 @@ public class FinPredictController {
     public String market(Model model) {
         model.addAttribute("marketDataCategories", marketDataCategories);
         model.addAttribute("marketDataIntervals", marketDataIntervals);
+        model.addAttribute("marketData", marketDataWorker.marketData);
+        model.addAttribute("marketDataSearchResults", marketDataWorker.marketData.getMarketDataSearchResults());
 
         return "marketdata/marketdata";
+    }
+
+    @PostMapping("/searchMarketData")
+    public String searchMarketData(@ModelAttribute("marketData") MarketData marketData,
+                                   Model model) {
+        Map<String, Integer> marketDataSearchResults = marketDataWorker.searchMarketData();
+        marketDataWorker.marketData.setMarketDataSearchResults(marketDataSearchResults);
+
+        System.out.println(marketDataSearchResults);
+
+        return "redirect:market";
     }
 
     @GetMapping("/predictor")
