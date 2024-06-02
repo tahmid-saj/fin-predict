@@ -26,6 +26,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
 
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+<!--    <link rel="stylesheet"-->
+<!--          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+<!--    <script type="text/javascript"-->
+<!--            src="https://www.gstatic.com/charts/loader.js"></script>-->
+
 <!--    graph styles-->
 <!--    <style>-->
 <!--        .market-data-graph {-->
@@ -78,12 +84,14 @@
     </nav>
 
     <div class="market-data-container">
-        <form class="market-data-form">
+        <form class="market-data-form"
+            th:action="@{/searchMarketData}" th:object="${marketData}" method="POST">
             <h5>Search market data</h5>
             <div class="form-row p-2">
                 <div class="form-group">
                     <label for="inputCategory">Category</label>
-                    <select id="inputCategory" class="form-control">
+                    <select id="inputCategory" class="form-control"
+                        th:field="*{category}">
                         <option th:each="category : ${marketDataCategories}"
                                 th:value="${category}" th:text="${category}"></option>
                     </select>
@@ -91,24 +99,28 @@
 
                 <div class="form-group">
                     <label for="inputTicker">Ticker</label>
-                    <input type="ticker" class="form-control" id="inputTicker" placeholder="BTCUSD">
+                    <input type="ticker" class="form-control" id="inputTicker" placeholder="BTCUSD"
+                        th:field="*{ticker}">
                 </div>
             </div>
 
             <div class="form-group p-2">
                 <div class="form-group">
                     <label for="inputInterval">Interval</label>
-                    <select id="inputInterval" class="form-control">
+                    <select id="inputInterval" class="form-control"
+                        th:field="*{interval}">
                         <option th:each="interval : ${marketDataIntervals}"
                                 th:value="${interval}" th:text="${interval}"></option>
                     </select>
                 </div>
 
                 <label for="inputStartDate">Start date</label>
-                <input type="date" class="form-control" id="inputStartDate">
+                <input type="date" class="form-control" id="inputStartDate"
+                    th:field="*{startDate}">
 
                 <label for="inputEndDate">End date</label>
-                <input type="date" class="form-control" id="inputEndDate">
+                <input type="date" class="form-control" id="inputEndDate"
+                    th:field="*{endDate}">
             </div>
 
             <button type="submit" class="btn btn-dark m-2 pt-2 pr-5 pl-5 pb-2">Search</button>
@@ -122,24 +134,57 @@
             </div>
         </div>
 
-        <script>
+<!--        <script th:inline="javascript">-->
+<!--            var real_data = /*[[${marketDataSearchResults}]]*/'noValue';-->
+
+<!--            $(document).ready(function() {-->
+<!--                google.charts.load('current', {-->
+<!--                    packages : [ 'corechart', 'line' ]-->
+<!--                });-->
+<!--                google.charts.setOnLoadCallback(drawLineChart);-->
+<!--            });-->
+
+<!--            function drawLineChart() {-->
+<!--                var data = new google.visualization.DataTable();-->
+<!--                data.addColumn('string', 'Year');-->
+<!--                data.addColumn('number', 'Views');-->
+<!--                Object.keys(real_data).forEach(function(key) {-->
+<!--                    data.addRow([ key, real_data[key] ]);-->
+<!--                });-->
+<!--                var options = {-->
+<!--                    title : 'Blog stats',-->
+<!--                    hAxis : {-->
+<!--                        title : 'Years',-->
+<!--                    },-->
+<!--                    vAxis : {-->
+<!--                        title : 'View Count'-->
+<!--                    }-->
+<!--                };-->
+<!--                var chart = new google.visualization.LineChart(document-->
+<!--                        .getElementById('marketDataGraph'));-->
+<!--                chart.draw(data, options);-->
+<!--            }-->
+<!--        </script>-->
+
+        <script th:inline="javascript">
+            var real_data = [[${marketDataSearchResults}]];
+            var labelsData = [];
+            var valuesData = [];
+
+            Object.keys(real_data).forEach(function(key) {
+               labelsData.push(key);
+               valuesData.push(real_data[key]);
+            });
+
             let ctx = document.getElementById("marketDataGraph").getContext("2d");
-            let marketDataGraph = new Chart(ctx, {
+            let predictorGraph = new Chart(ctx, {
                 type: "line",
                 data: {
-                    labels: [
-                        "Monday",
-                        "Tuesday",
-                        "Wednesday",
-                        "Thursday",
-                        "Friday",
-                        "Saturday",
-                        "Sunday",
-                    ],
+                    labels: labelsData,
                     datasets: [
                         {
                             label: "Closing price",
-                            data: [2, 9, 3, 17, 6, 3, 7],
+                            data: valuesData,
                             backgroundColor: "#6b9080",
                         },
                     ],
@@ -150,29 +195,17 @@
         <div class="market-data-table">
             <table class="table table-bordered table-striped">
                 <thead class="table-dark">
-                <tr>
-                    <th>Date</th>
-                    <th>Closing Price</th>
-                </tr>
+                    <tr>
+                        <th>Date</th>
+                        <th>Closing Price</th>
+                    </tr>
                 </thead>
 
                 <tbody>
-                <tr>
-                    <td>2024-06-01</td>
-                    <td>100</td>
-                </tr>
-                <tr>
-                    <td>2024-06-01</td>
-                    <td>100</td>
-                </tr>
-                <tr>
-                    <td>2024-06-01</td>
-                    <td>100</td>
-                </tr>
-                <tr>
-                    <td>2024-06-01</td>
-                    <td>100</td>
-                </tr>
+                    <tr th:each="marketDataSearchResult : ${marketDataSearchResults}">
+                        <td th:text="${marketDataSearchResult.key}">key</td>
+                        <td th:text="${marketDataSearchResult.value}">key</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
