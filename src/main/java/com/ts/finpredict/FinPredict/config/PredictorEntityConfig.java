@@ -8,12 +8,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PredictorEntityConfig {
 
-    @Bean("predictorDailyEntity")
+    @Bean("PredictorDailyEntity")
     public PredictorDailyEntity predictorEntityCurrentDay() {
         return new PredictorDailyEntity();
     }
 
-    @Bean("predictorWeeklyEntity")
+    @Bean("PredictorWeeklyEntity")
     public PredictorWeeklyEntity predictorEntityCurrentWeek() {
         return new PredictorWeeklyEntity();
     }
