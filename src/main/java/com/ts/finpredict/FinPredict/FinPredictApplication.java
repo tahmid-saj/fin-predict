@@ -1,9 +1,9 @@
 package com.ts.finpredict.FinPredict;
 
-import com.ts.finpredict.FinPredict.model.dao.PredictorDailyDAO;
-import com.ts.finpredict.FinPredict.model.dao.PredictorWeeklyDAO;
 import com.ts.finpredict.FinPredict.model.entity.PredictorDailyEntity;
 import com.ts.finpredict.FinPredict.model.entity.PredictorWeeklyEntity;
+import com.ts.finpredict.FinPredict.model.service.PredictorDailyService;
+import com.ts.finpredict.FinPredict.model.service.PredictorWeeklyService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,101 +24,101 @@ public class FinPredictApplication {
 
 	@Bean
 	public CommandLineRunner commandLineRunner(
-			PredictorDailyDAO predictorDailyDAO,
-			PredictorWeeklyDAO predictorWeeklyDAO
+			PredictorDailyService predictorDailyService,
+			PredictorWeeklyService predictorWeeklyService
 	) {
 		return runner -> {
-//			createPredictorDaily(predictorDailyDAO);
-//			createPredictorWeekly(predictorWeeklyDAO);
+//			createPredictorDaily(predictorDailyService);
+//			createPredictorWeekly(predictorWeeklyService);
 
-//			readPredictorDailyByDate(predictorDailyDAO, "2024-05-01");
-//			readPredictorWeeklyByDate(predictorWeeklyDAO, "2024-05-01");
+//			readPredictorDailyByDate(predictorDailyService, "2024-05-01");
+//			readPredictorWeeklyByDate(predictorWeeklyService, "2024-05-01");
 
-//			readAllPredictorDaily(predictorDailyDAO);
-//			readAllPredictorWeekly(predictorWeeklyDAO);
+//			readAllPredictorDaily(predictorDailyService);
+//			readAllPredictorWeekly(predictorWeeklyService);
 
-//			updatePredictorDaily(predictorDailyDAO, "2024-05-01", 24);
-//			updatePredictorWeekly(predictorWeeklyDAO, "2024-05-01", 24);
+//			updatePredictorDaily(predictorDailyService, "2024-05-01", 24);
+//			updatePredictorWeekly(predictorWeeklyService, "2024-05-01", 24);
 
-//			deletePredictorDaily(predictorDailyDAO, "2024-05-01");
-//			deletePredictorWeekly(predictorWeeklyDAO, "2024-05-01");
+//			deletePredictorDaily(predictorDailyService, "2024-05-01");
+//			deletePredictorWeekly(predictorWeeklyService, "2024-05-01");
 
-//			deleteAllPredictorDaily(predictorDailyDAO);
-//			deleteAllPredictorWeekly(predictorWeeklyDAO);
+//			deleteAllPredictorDaily(predictorDailyService);
+//			deleteAllPredictorWeekly(predictorWeeklyService);
 		};
 	}
 
-	public void createPredictorDaily(PredictorDailyDAO predictorDailyDAO) {
+	public void createPredictorDaily(PredictorDailyService predictorDailyService) {
 		PredictorDailyEntity tmpPredictorDailyEntity = new PredictorDailyEntity("2024-06-15", 211);
-		predictorDailyDAO.save(tmpPredictorDailyEntity);
+		predictorDailyService.save(tmpPredictorDailyEntity);
 	}
 
-	public void createPredictorWeekly(PredictorWeeklyDAO predictorWeeklyDAO) {
+	public void createPredictorWeekly(PredictorWeeklyService predictorWeeklyService) {
 		PredictorWeeklyEntity tmpPredictorWeeklyEntity = new PredictorWeeklyEntity("2024-06-13", 311);
-		predictorWeeklyDAO.save(tmpPredictorWeeklyEntity);
+		predictorWeeklyService.save(tmpPredictorWeeklyEntity);
 	}
 
-	public void readPredictorDailyByDate(PredictorDailyDAO predictorDailyDAO, String currentDay) {
-		List<PredictorDailyEntity> predictorDailyEntities = predictorDailyDAO.findByDate(currentDay);
+	public void readPredictorDailyByDate(PredictorDailyService predictorDailyService, String currentDay) {
+		List<PredictorDailyEntity> predictorDailyEntities = predictorDailyService.findByDate(currentDay);
 		for (PredictorDailyEntity predictorDailyEntity : predictorDailyEntities) {
 			System.out.println(predictorDailyEntity);
 		}
 	}
 
-	public void readPredictorWeeklyByDate(PredictorWeeklyDAO predictorWeeklyDAO, String currentDay) {
-		List<PredictorWeeklyEntity> predictorWeeklyEntities = predictorWeeklyDAO.findByDate(currentDay);
+	public void readPredictorWeeklyByDate(PredictorWeeklyService predictorWeeklyService, String currentDay) {
+		List<PredictorWeeklyEntity> predictorWeeklyEntities = predictorWeeklyService.findByDate(currentDay);
 		for (PredictorWeeklyEntity predictorWeeklyEntity : predictorWeeklyEntities) {
 			System.out.println(predictorWeeklyEntity);
 		}
 	}
 
-	public void readAllPredictorDaily(PredictorDailyDAO predictorDailyDAO) {
-		List<PredictorDailyEntity> predictorDailyEntities = predictorDailyDAO.findAll();
+	public void readAllPredictorDaily(PredictorDailyService predictorDailyService) {
+		List<PredictorDailyEntity> predictorDailyEntities = predictorDailyService.findAll();
 
 		for (PredictorDailyEntity predictorDailyEntity : predictorDailyEntities) {
 			System.out.println(predictorDailyEntity);
 		}
 	}
 
-	public void readAllPredictorWeekly(PredictorWeeklyDAO predictorWeeklyDAO) {
-		List<PredictorWeeklyEntity> predictorWeeklyEntities = predictorWeeklyDAO.findAll();
+	public void readAllPredictorWeekly(PredictorWeeklyService predictorWeeklyService) {
+		List<PredictorWeeklyEntity> predictorWeeklyEntities = predictorWeeklyService.findAll();
 
 		for (PredictorWeeklyEntity predictorWeeklyEntity : predictorWeeklyEntities) {
 			System.out.println(predictorWeeklyEntity);
 		}
 	}
 
-	private void updatePredictorDaily(PredictorDailyDAO predictorDailyDAO, String currentDay, int closingPrice) {
-		List<PredictorDailyEntity> predictorDailyEntities = predictorDailyDAO.findByDate(currentDay);
+	private void updatePredictorDaily(PredictorDailyService predictorDailyService, String currentDay, int closingPrice) {
+		List<PredictorDailyEntity> predictorDailyEntities = predictorDailyService.findByDate(currentDay);
 		predictorDailyEntities.get(0).setClosingPrice(closingPrice);
-		predictorDailyDAO.update(predictorDailyEntities.get(0));
+		predictorDailyService.update(predictorDailyEntities.get(0));
 
-		System.out.println(predictorDailyDAO.findByDate(currentDay));
+		System.out.println(predictorDailyService.findByDate(currentDay));
 	}
 
-	private void updatePredictorWeekly(PredictorWeeklyDAO predictorWeeklyDAO, String currentDay, int closingPrice) {
-		List<PredictorWeeklyEntity> predictorWeeklyEntities = predictorWeeklyDAO.findByDate(currentDay);
+	private void updatePredictorWeekly(PredictorWeeklyService predictorWeeklyService, String currentDay, int closingPrice) {
+		List<PredictorWeeklyEntity> predictorWeeklyEntities = predictorWeeklyService.findByDate(currentDay);
 		predictorWeeklyEntities.get(0).setClosingPrice(closingPrice);
-		predictorWeeklyDAO.update(predictorWeeklyEntities.get(0));
+		predictorWeeklyService.update(predictorWeeklyEntities.get(0));
 
-		System.out.println(predictorWeeklyDAO.findByDate(currentDay));
+		System.out.println(predictorWeeklyService.findByDate(currentDay));
 	}
 
-	private void deletePredictorDaily(PredictorDailyDAO predictorDailyDAO, String currentDay) {
-		predictorDailyDAO.delete(currentDay);
+	private void deletePredictorDaily(PredictorDailyService predictorDailyService, String currentDay) {
+		predictorDailyService.delete(currentDay);
 	}
 
-	private void deletePredictorWeekly(PredictorWeeklyDAO predictorWeeklyDAO, String currentDay) {
-		predictorWeeklyDAO.delete(currentDay);
+	private void deletePredictorWeekly(PredictorWeeklyService predictorWeeklyService, String currentDay) {
+		predictorWeeklyService.delete(currentDay);
 	}
 
-	private void deleteAllPredictorDaily(PredictorDailyDAO predictorDailyDAO) {
-		int numRowsDeleted = predictorDailyDAO.deleteAll();
+	private void deleteAllPredictorDaily(PredictorDailyService predictorDailyService) {
+		int numRowsDeleted = predictorDailyService.deleteAll();
 		System.out.println("Deleted rows: " + numRowsDeleted);
 	}
 
-	private void deleteAllPredictorWeekly(PredictorWeeklyDAO predictorWeeklyDAO) {
-		int numRowsDeleted = predictorWeeklyDAO.deleteAll();
+	private void deleteAllPredictorWeekly(PredictorWeeklyService predictorWeeklyService) {
+		int numRowsDeleted = predictorWeeklyService.deleteAll();
 		System.out.println("Deleted rows: " + numRowsDeleted);
 	}
 }

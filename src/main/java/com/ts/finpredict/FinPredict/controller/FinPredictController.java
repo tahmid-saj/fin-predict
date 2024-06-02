@@ -64,7 +64,7 @@ public class FinPredictController {
     AdviceWorker adviceWorker = new AdviceWorker();
     ChatbotWorker chatbotWorker = new ChatbotWorker();
 
-//    without using @Service annotation:
+//    without using @Service annotation: -------------------------------------------------------------------------------------------------------
 //    private PredictorDailyEntity predictorDailyEntity;
 //    private PredictorWeeklyEntity predictorWeeklyEntity;
 
@@ -94,7 +94,7 @@ public class FinPredictController {
 //        this.predictorWeeklyEntity = predictorWeeklyEntity;
 //    }
 
-//    using @Service annotation:
+//    using @Service annotation: -------------------------------------------------------------------------------------------------------
 //    private PredictorDailyService predictorDailyService;
 //    private PredictorWeeklyService predictorWeeklyService;
 //
