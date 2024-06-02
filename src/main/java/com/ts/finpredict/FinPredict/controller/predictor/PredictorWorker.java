@@ -3,6 +3,7 @@ package com.ts.finpredict.FinPredict.controller.predictor;
 import com.ts.finpredict.FinPredict.controller.requests.PredictorRequests;
 import com.ts.finpredict.FinPredict.model.entity.Predictor;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
@@ -12,29 +13,29 @@ public class PredictorWorker {
     public Predictor predictor = new Predictor();
     public PredictorRequests predictorRequests = new PredictorRequests();
 
-    public PredictorWorker() {
-        this.generateCurrentDayPrediction();
-        this.generateCurrentWeekPredictions();
+    public PredictorWorker(String urlCurrentDay, String urlCurrentWeek) throws Exception {
+        this.generateCurrentDayPrediction(urlCurrentDay);
+        this.generateCurrentWeekPredictions(urlCurrentWeek);
     }
 
-    public PredictorWorker(Predictor predictor, PredictorRequests predictorRequests) {
+    public PredictorWorker(String urlCurrentDay, String urlCurrentWeek, Predictor predictor, PredictorRequests predictorRequests) throws Exception {
         this.predictor = predictor;
         this.predictorRequests = predictorRequests;
 
-        this.generateCurrentDayPrediction();
-        this.generateCurrentWeekPredictions();
-    }
-
-    public Predictor getPredictor() {
-        return predictor;
+        this.generateCurrentDayPrediction(urlCurrentDay);
+        this.generateCurrentWeekPredictions(urlCurrentWeek);
     }
 
     public void setPredictor(Predictor predictor) {
         this.predictor = predictor;
     }
 
-    public int generateCurrentDayPrediction() {
-        int resCurrentDayPrediction = this.predictorRequests.getPredictorCurrentDayResults();
+    public Predictor getPredictor() {
+        return predictor;
+    }
+
+    public int generateCurrentDayPrediction(String urlCurrentDay) throws Exception {
+        int resCurrentDayPrediction = this.predictorRequests.getPredictorCurrentDayResults(urlCurrentDay);
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
@@ -44,8 +45,8 @@ public class PredictorWorker {
         return resCurrentDayPrediction;
     }
 
-    public Map<String, Integer> generateCurrentWeekPredictions() {
-        Map<String, Integer> resCurrentWeekPredictions = this.predictorRequests.getPredictorCurrentWeekResults();
+    public Map<String, Integer> generateCurrentWeekPredictions(String urlCurrentWeek) throws Exception {
+        Map<String, Integer> resCurrentWeekPredictions = this.predictorRequests.getPredictorCurrentWeekResults(urlCurrentWeek);
         this.predictor.setCurrentWeekPredictions(resCurrentWeekPredictions);
 
         return resCurrentWeekPredictions;

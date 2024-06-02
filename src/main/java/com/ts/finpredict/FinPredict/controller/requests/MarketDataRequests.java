@@ -60,6 +60,8 @@ public class MarketDataRequests {
         HttpPost post = new HttpPost(url);
         System.out.println(url);
         System.out.println(marketData);
+
+//        request headers
         post.addHeader("Content-Type", "application/json");
 
         final String jsonBody = "{\"category\":" + "\"" + marketData.getCategory() + "\"," +

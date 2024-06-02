@@ -47,10 +47,19 @@ public class FinPredictController {
     @Value("${finpredictapimarketdatapath}")
     private String finpredictapimarketdatapath;
 
+    @Value("${finpredictapipredictorcurrentdaypath}")
+    private String finpredictapipredictorcurrentdaypath;
+
+    @Value("${finpredictapipredictorcurrentweekpath}")
+    private String finpredictapipredictorcurrentweekpath;
+
     MarketDataWorker marketDataWorker = new MarketDataWorker();
-    PredictorWorker predictorWorker = new PredictorWorker();
+    PredictorWorker predictorWorker = new PredictorWorker(finpredictapipredictorcurrentdaypath, finpredictapipredictorcurrentweekpath);
     AdviceWorker adviceWorker = new AdviceWorker();
     ChatbotWorker chatbotWorker = new ChatbotWorker();
+
+    public FinPredictController() throws Exception {
+    }
 
     @GetMapping("/")
     public String about(Model model) {
@@ -77,7 +86,7 @@ public class FinPredictController {
     public String searchMarketData(@ModelAttribute("marketData") MarketData marketData,
                                    Model model) throws Exception {
         Map<String, Integer> marketDataSearchResults = marketDataWorker.searchMarketData(
-                finpredictapimarketdatapath,
+                finpredictapiurl + finpredictapimarketdatapath,
                 marketData
         );
 
@@ -93,7 +102,7 @@ public class FinPredictController {
     }
 
     @GetMapping("/predictor")
-    public String predictor(Model model) {
+    public String predictor(Model model) throws Exception {
         model.addAttribute("predictorHeaders", predictorHeaders);
         model.addAttribute("predictorIntervals", predictorIntervals);
         model.addAttribute("predictorCurrentDayPredictionDate",
