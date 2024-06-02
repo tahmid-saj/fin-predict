@@ -8,6 +8,8 @@ import com.ts.finpredict.FinPredict.model.entity.Chatbot;
 import com.ts.finpredict.FinPredict.model.entity.MarketData;
 import com.ts.finpredict.FinPredict.model.entity.PredictorDailyEntity;
 import com.ts.finpredict.FinPredict.model.entity.PredictorWeeklyEntity;
+import com.ts.finpredict.FinPredict.model.service.PredictorDailyService;
+import com.ts.finpredict.FinPredict.model.service.PredictorWeeklyService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -62,6 +64,7 @@ public class FinPredictController {
     AdviceWorker adviceWorker = new AdviceWorker();
     ChatbotWorker chatbotWorker = new ChatbotWorker();
 
+//    without using @Service annotation:
 //    private PredictorDailyEntity predictorDailyEntity;
 //    private PredictorWeeklyEntity predictorWeeklyEntity;
 
@@ -89,6 +92,32 @@ public class FinPredictController {
 //    @Autowired
 //    public void setPredictorWeeklyEntity(PredictorWeeklyEntity predictorWeeklyEntity) {
 //        this.predictorWeeklyEntity = predictorWeeklyEntity;
+//    }
+
+//    using @Service annotation:
+//    private PredictorDailyService predictorDailyService;
+//    private PredictorWeeklyService predictorWeeklyService;
+//
+////    constructor injection
+//    @Autowired
+//    public FinPredictController(
+//            PredictorDailyService predictorDailyService,
+//            PredictorWeeklyService predictorWeeklyService
+//    ) {
+//      this.predictorDailyService = predictorDailyService;
+//      this.predictorWeeklyService = predictorWeeklyService;
+//    }
+//
+////    setter injection
+//    @Autowired
+//    public void setPredictorDailyService(PredictorDailyService predictorDailyService) {
+//        this.predictorDailyService = predictorDailyService;
+//    }
+//
+////    setter injection
+//    @Autowired
+//    public void setPredictorWeeklyService(PredictorWeeklyService predictorWeeklyService) {
+//        this.predictorWeeklyService = predictorWeeklyService;
 //    }
 
     @GetMapping("/")
