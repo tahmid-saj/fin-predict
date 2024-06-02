@@ -61,31 +61,19 @@
 
     <div class="advice-container">
         <div class="advice-cards-container">
-            <div class="card" style="width: 22rem; height: 20rem;">
+            <div class="card" th:each="advice : ${advices.get(0)}" style="width: 22rem; height: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title" th:text="'Advice 1'"></h5>
-                    <p class="card-text">Get current and historical market data on stocks, indices, crypto and foreign exchange.</p>
+                    <h5 class="card-title" th:text="${advice.key}"></h5>
+                    <p class="card-text" th:text="${advice.value}"></p>
                 </div>
             </div>
+        </div>
 
-            <div class="card" style="width: 22rem; height: 20rem;">
+        <div class="advice-cards-container">
+            <div class="card" th:each="advice : ${advices.get(1)}" style="width: 22rem; height: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title" th:text="'Advice 2'"></h5>
-                    <p class="card-text">A bitcoin and stock predictor developed to inform of any potential investment opportunities or downfalls.</p>
-                </div>
-            </div>
-
-            <div class="card" style="width: 22rem; height: 20rem;">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="'Advice 3'"></h5>
-                    <p class="card-text">Provide your financial concerns and ask for suggestions from our chatbot.</p>
-                </div>
-            </div>
-
-            <div class="card" style="width: 22rem; height: 20rem;">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="'Advice 4'"></h5>
-                    <p class="card-text">Provide your financial concerns and ask for suggestions from our chatbot.</p>
+                    <h5 class="card-title" th:text="${advice.key}"></h5>
+                    <p class="card-text" th:text="${advice.value}"></p>
                 </div>
             </div>
         </div>
@@ -94,19 +82,24 @@
             <h5>Ask the chatbot for some financial advice</h5>
             <h7>Example: Can you give me some financial advice?</h7>
 
-            <form class="chatbot-form">
+            <form class="chatbot-form"
+                th:action="@{/generateChatbotResponse}" th:object="${chatbot}" method="POST">
                 <div class="input-group input-group-lg">
-                    <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm"
+                    th:field="*{userMessage}">
                 </div>
 
                 <button type="submit" class="btn btn-dark m-2 pt-2 pr-5 pl-5 pb-2">Message</button>
-                <button type="button" class="btn btn-secondary m-2 pt-2 pr-5 pl-5 pb-2">Clear</button>
+                <a class="btn btn-secondary m-2 pt-2 pr-5 pl-5 pb-2"
+                    th:href="@{clearUserMessage}"
+                    onclick="return true">Clear</a>
             </form>
 
-            <div class="card">
+            <div class="card"
+                th:if="${chatbotResponse != null}">
                 <div class="card-body">
                     <h5 class="card-title">Chatbot</h5>
-                    <p class="card-text">Provide your financial concerns and ask for suggestions from our chatbot.</p>
+                    <p class="card-text" th:text="${chatbotResponse}"></p>
                 </div>
             </div>
         </div>

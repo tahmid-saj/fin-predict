@@ -1,5 +1,7 @@
 package com.ts.finpredict.FinPredict.controller;
 
+import com.ts.finpredict.FinPredict.controller.advice.AdviceWorker;
+import com.ts.finpredict.FinPredict.controller.chatbot.ChatbotWorker;
 import com.ts.finpredict.FinPredict.controller.marketdata.MarketDataWorker;
 import com.ts.finpredict.FinPredict.controller.predictor.PredictorWorker;
 import com.ts.finpredict.FinPredict.model.entity.MarketData;
@@ -37,6 +39,8 @@ public class FinPredictController {
 
     MarketDataWorker marketDataWorker = new MarketDataWorker();
     PredictorWorker predictorWorker = new PredictorWorker();
+    AdviceWorker adviceWorker = new AdviceWorker();
+    ChatbotWorker chatbotWorker = new ChatbotWorker();
 
     @GetMapping("/")
     public String about(Model model) {
@@ -88,6 +92,24 @@ public class FinPredictController {
 
     @GetMapping("/advice")
     public String advice(Model model) {
+        model.addAttribute("advices", adviceWorker.advice.getAdvices());
+        model.addAttribute("chatbot", chatbotWorker.chatbot);
+        model.addAttribute("chatbotResponse", chatbotWorker.chatbot.getChatbotResponse());
+
         return "advice/advice";
+    }
+
+    @PostMapping("/generateChatbotResponse")
+    public String generateChatbotResponse(Model model) {
+        String resChatbotResponse = chatbotWorker.generateChatbotResponse();
+
+        return "redirect:advice";
+    }
+
+    @GetMapping("/clearUserMessage")
+    public String clearUserMessage(Model model) {
+        chatbotWorker.clearUserMessage();
+
+        return "redirect:advice";
     }
 }
