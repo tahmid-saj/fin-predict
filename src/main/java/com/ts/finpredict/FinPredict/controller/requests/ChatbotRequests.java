@@ -55,7 +55,7 @@ public class ChatbotRequests {
     }
 
     private static String sendPost(String url, String userMessage) throws Exception {
-        HttpPost post = new HttpPost((url));
+        HttpPost post = new HttpPost(url);
         System.out.println(url);
         System.out.println(userMessage);
         post.addHeader("Content-Type", "text/plain");

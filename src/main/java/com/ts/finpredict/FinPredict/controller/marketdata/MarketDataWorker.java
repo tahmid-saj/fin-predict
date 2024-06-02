@@ -25,8 +25,8 @@ public class MarketDataWorker {
         this.marketData = marketData;
     }
 
-    public Map<String, Integer> searchMarketData(MarketData marketData) {
-        Map<String, Integer> marketDataSearchResults = marketDataRequests.getMarketDataSearchResults(marketData);
+    public Map<String, Integer> searchMarketData(String url, MarketData marketData) throws Exception {
+        Map<String, Integer> marketDataSearchResults = marketDataRequests.getMarketDataSearchResults(url, marketData);
         this.marketData.setMarketDataSearchResults(marketDataSearchResults);
 
         return marketDataSearchResults;
