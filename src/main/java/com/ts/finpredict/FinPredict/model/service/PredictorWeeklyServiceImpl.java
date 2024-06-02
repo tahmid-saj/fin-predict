@@ -24,7 +24,14 @@ public class PredictorWeeklyServiceImpl implements PredictorWeeklyService {
 
     @Override
     public List<PredictorWeeklyEntity> findByDate(String currentDay) {
-        return this.predictorWeeklyDAO.findByDate(currentDay);
+//        TODO: need proper error responses for CRUD in service
+        List<PredictorWeeklyEntity> predictorWeeklyEntities = this.predictorWeeklyDAO.findByDate(currentDay);
+
+        if (predictorWeeklyEntities == null) {
+            throw new RuntimeException("Did not find Predictor Weekly Entity for date: " + currentDay);
+        }
+
+        return predictorWeeklyEntities;
     }
 
     @Override

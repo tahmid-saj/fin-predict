@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PredictorDailyServiceImpl implements PredictorDailyService {
@@ -24,7 +25,14 @@ public class PredictorDailyServiceImpl implements PredictorDailyService {
 
     @Override
     public List<PredictorDailyEntity> findByDate(String currentDay) {
-        return this.predictorDailyDAO.findByDate(currentDay);
+//        TODO: need proper error responses for CRUD in service
+        List<PredictorDailyEntity> predictorDailyEntities = this.predictorDailyDAO.findByDate(currentDay);
+
+        if (predictorDailyEntities == null) {
+            throw new RuntimeException("Did not find Predictor Daily Entity for date: " + currentDay);
+        }
+
+        return predictorDailyEntities;
     }
 
     @Override
