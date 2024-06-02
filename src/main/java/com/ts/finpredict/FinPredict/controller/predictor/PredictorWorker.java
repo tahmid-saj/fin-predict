@@ -20,6 +20,9 @@ public class PredictorWorker {
     public PredictorWorker(Predictor predictor, PredictorRequests predictorRequests) {
         this.predictor = predictor;
         this.predictorRequests = predictorRequests;
+
+        this.generateCurrentDayPrediction();
+        this.generateCurrentWeekPredictions();
     }
 
     public Predictor getPredictor() {
