@@ -27,7 +27,6 @@ public class ChatbotWorker {
     }
 
     public String generateChatbotResponse(String url, String userMessage) throws Exception {
-        System.out.println(this.chatbot.getUserMessage());
         String resChatbotResponse = this.chatbotRequests.getChatbotResponse(url, userMessage);
         this.chatbot.setChatbotResponse(resChatbotResponse);
 

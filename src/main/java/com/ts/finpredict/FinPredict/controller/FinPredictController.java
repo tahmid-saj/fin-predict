@@ -44,6 +44,9 @@ public class FinPredictController {
     @Value("${finpredictapichatbotpath}")
     private String finpredictapichatbotpath;
 
+    @Value("${finpredictapimarketdatapath}")
+    private String finpredictapimarketdatapath;
+
     MarketDataWorker marketDataWorker = new MarketDataWorker();
     PredictorWorker predictorWorker = new PredictorWorker();
     AdviceWorker adviceWorker = new AdviceWorker();
@@ -72,8 +75,11 @@ public class FinPredictController {
 
     @PostMapping("/searchMarketData")
     public String searchMarketData(@ModelAttribute("marketData") MarketData marketData,
-                                   Model model) {
-        Map<String, Integer> marketDataSearchResults = marketDataWorker.searchMarketData(marketData);
+                                   Model model) throws Exception {
+        Map<String, Integer> marketDataSearchResults = marketDataWorker.searchMarketData(
+                finpredictapimarketdatapath,
+                marketData
+        );
 
         return "redirect:market";
     }
@@ -116,8 +122,10 @@ public class FinPredictController {
     public String generateChatbotResponse(@ModelAttribute("chatbot") Chatbot chatbot,
                                           Model model) throws Exception {
         System.out.println(finpredictapiurl + finpredictapichatbotpath);
-        String resChatbotResponse = chatbotWorker.generateChatbotResponse(finpredictapiurl + finpredictapichatbotpath,
-                chatbot.getUserMessage());
+        String resChatbotResponse = chatbotWorker.generateChatbotResponse(
+                finpredictapiurl + finpredictapichatbotpath,
+                chatbot.getUserMessage()
+        );
 
         return "redirect:advice";
     }
