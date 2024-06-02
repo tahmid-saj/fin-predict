@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fin Predict</title>
+
+<!--    bootstrap styles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+<!--    ion icons-->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<!--    internal styles-->
+    <link rel="stylesheet" th:href="@{/shared/index.css}"/>
+    <link rel="stylesheet" th:href="@{/css/predictor.css}"/>
+
+<!--    graph links-->
+    <link rel="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+          type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
+            type="text/javascript">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
+
+<!--    graph styles-->
+<!--    <style>-->
+<!--        .market-data-graph {-->
+<!--            width: 90%;-->
+<!--            margin: 15px auto;-->
+<!--        }-->
+<!--    </style>-->
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light m-3 p-3">
+        <a class="navbar-brand" href="/">Fin Predict</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/market">Market</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/predictor">Predictor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/advice">Chatbot</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/advice">Advice</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/tahmid-saj/fin-predict"><ion-icon name="logo-github"></ion-icon></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><ion-icon name="logo-medium"></ion-icon></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://ca.linkedin.com/in/tsajin"><ion-icon name="logo-linkedin"></ion-icon></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.tahmidsajin.com">tahmidsajin.com</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="predictor-container">
+        <h4 class="predictor-header" th:text="${predictorHeaders.get(0)}"></h4>
+
+        <h5 th:text="${predictorIntervals.get(0)} + ' predictions'"></h5>
+        <table class="daily-predictor-table table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Date</th>
+                    <th>Closing Price</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td th:text="${predictorCurrentDayPredictionDate}"></td>
+                    <td th:text="${predictorCurrentDayPredictionPrice}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <h5 th:text="${predictorIntervals.get(1)} + ' predictions'"></h5>
+        <div class="predictor-graph">
+            <h4>BTC predictions</h4>
+            <div>
+                <canvas id="predictorGraph"></canvas>
+            </div>
+        </div>
+
+        <script th:inline="javascript">
+            var real_data = [[${predictorCurrentWeekPredictions}]];
+            var labelsData = [];
+            var valuesData = [];
+
+            Object.keys(real_data).forEach(function(key) {
+               labelsData.push(key);
+               valuesData.push(real_data[key]);
+            });
+
+            let ctx = document.getElementById("predictorGraph").getContext("2d");
+            let predictorGraph = new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: labelsData,
+                    datasets: [
+                        {
+                            label: "Closing price",
+                            data: valuesData,
+                            backgroundColor: "#6b9080",
+                        },
+                    ],
+                },
+            });
+        </script>
+
+        <div class="predictor-table">
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Date</th>
+                        <th>Closing Price</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr th:each="predictorCurrentWeekResult : ${predictorCurrentWeekPredictions}">
+                        <td th:text="${predictorCurrentWeekResult.key}"></td>
+                        <td th:text="${predictorCurrentWeekResult.value}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
