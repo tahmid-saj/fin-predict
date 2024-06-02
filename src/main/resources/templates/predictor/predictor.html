@@ -91,8 +91,8 @@
 
             <tbody>
                 <tr>
-                    <td>2024-06-01</td>
-                    <td>100</td>
+                    <td th:text="${predictorCurrentDayPredictionDate}"></td>
+                    <td th:text="${predictorCurrentDayPredictionPrice}"></td>
                 </tr>
             </tbody>
         </table>
@@ -106,24 +106,25 @@
             </div>
         </div>
 
-        <script>
+        <script th:inline="javascript">
+            var real_data = [[${predictorCurrentWeekPredictions}]];
+            var labelsData = [];
+            var valuesData = [];
+
+            Object.keys(real_data).forEach(function(key) {
+               labelsData.push(key);
+               valuesData.push(real_data[key]);
+            });
+
             let ctx = document.getElementById("predictorGraph").getContext("2d");
             let predictorGraph = new Chart(ctx, {
                 type: "line",
                 data: {
-                    labels: [
-                        "Monday",
-                        "Tuesday",
-                        "Wednesday",
-                        "Thursday",
-                        "Friday",
-                        "Saturday",
-                        "Sunday",
-                    ],
+                    labels: labelsData,
                     datasets: [
                         {
                             label: "Closing price",
-                            data: [2, 9, 3, 17, 6, 3, 7],
+                            data: valuesData,
                             backgroundColor: "#6b9080",
                         },
                     ],
@@ -141,21 +142,9 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>2024-06-01</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <td>2024-06-01</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <td>2024-06-01</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <td>2024-06-01</td>
-                        <td>100</td>
+                    <tr th:each="predictorCurrentWeekResult : ${predictorCurrentWeekPredictions}">
+                        <td th:text="${predictorCurrentWeekResult.key}"></td>
+                        <td th:text="${predictorCurrentWeekResult.value}"></td>
                     </tr>
                 </tbody>
             </table>

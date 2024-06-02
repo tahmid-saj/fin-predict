@@ -1,6 +1,7 @@
 package com.ts.finpredict.FinPredict.controller;
 
 import com.ts.finpredict.FinPredict.controller.marketdata.MarketDataWorker;
+import com.ts.finpredict.FinPredict.controller.predictor.PredictorWorker;
 import com.ts.finpredict.FinPredict.model.entity.MarketData;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,6 +36,7 @@ public class FinPredictController {
     private List<String> predictorIntervals;
 
     MarketDataWorker marketDataWorker = new MarketDataWorker();
+    PredictorWorker predictorWorker = new PredictorWorker();
 
     @GetMapping("/")
     public String about(Model model) {
@@ -74,6 +76,12 @@ public class FinPredictController {
     public String predictor(Model model) {
         model.addAttribute("predictorHeaders", predictorHeaders);
         model.addAttribute("predictorIntervals", predictorIntervals);
+        model.addAttribute("predictorCurrentDayPredictionDate",
+                predictorWorker.predictor.getCurrentDayPredictionDate());
+        model.addAttribute("predictorCurrentDayPredictionPrice",
+                predictorWorker.predictor.getCurrentDayPredictionPrice());
+        model.addAttribute("predictorCurrentWeekPredictions",
+                predictorWorker.predictor.getCurrentWeekPredictions());
 
         return "predictor/predictor";
     }
