@@ -2,12 +2,14 @@ package com.ts.finpredict.FinPredict.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="predictor_weekly")
 public class PredictorWeeklyEntity {
 
+    @Id
     @Column(name="current_day")
     private String currentDay;
 

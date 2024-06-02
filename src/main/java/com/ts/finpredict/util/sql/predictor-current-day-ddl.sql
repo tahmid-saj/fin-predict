@@ -8,9 +8,10 @@ USE `predictor`;
 DROP TABLE IF EXISTS `predictor_daily`;
 
 CREATE TABLE `predictor_daily` (
-  `current_day` varchar(20) DEFAULT NULL,
-  `closing_price` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `current_day` varchar(20) NOT NULL,
+  `closing_price` int DEFAULT NULL,
+  PRIMARY KEY (`current_day`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 --
 -- Data for table `predictor_daily`
