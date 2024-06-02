@@ -58,9 +58,14 @@ public class FinPredictController {
     public String searchMarketData(@ModelAttribute("marketData") MarketData marketData,
                                    Model model) {
         Map<String, Integer> marketDataSearchResults = marketDataWorker.searchMarketData();
-        marketDataWorker.marketData.setMarketDataSearchResults(marketDataSearchResults);
 
-        System.out.println(marketDataSearchResults);
+        return "redirect:market";
+    }
+
+    @GetMapping("/clearMarketData")
+    public String clearMarketData(@ModelAttribute("marketData") MarketData marketData,
+                                  Model model) {
+        marketDataWorker.clearMarketDataForm();
 
         return "redirect:market";
     }
