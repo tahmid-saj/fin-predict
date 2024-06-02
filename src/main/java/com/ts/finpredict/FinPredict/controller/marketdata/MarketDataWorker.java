@@ -1,11 +1,13 @@
 package com.ts.finpredict.FinPredict.controller.marketdata;
 
+import com.ts.finpredict.FinPredict.controller.requests.MarketDataRequests;
 import com.ts.finpredict.FinPredict.model.entity.MarketData;
 
 import java.util.*;
 
 public class MarketDataWorker {
     public MarketData marketData = new MarketData();
+    public MarketDataRequests marketDataRequests = new MarketDataRequests();
 
     public MarketDataWorker() {
 
@@ -24,26 +26,13 @@ public class MarketDataWorker {
     }
 
     public Map<String, Integer> searchMarketData() {
-        Map<String, Integer> res = new TreeMap<String, Integer>();
+        Map<String, Integer> marketDataSearchResults = marketDataRequests.getMarketDataSearchResults(this.marketData);
+        this.marketData.setMarketDataSearchResults(marketDataSearchResults);
 
-        Random rand = new Random();
-
-        int randNum = rand.nextInt(10);
-
-        if (randNum <= 5) {
-            res.put("2024-05-01", 211);
-            res.put("2024-05-02", 301);
-            res.put("2024-05-03", 101);
-        } else {
-            res.put("2024-05-01", 400);
-            res.put("2024-05-02", 301);
-            res.put("2024-05-03", 701);
-        }
-
-        return res;
+        return marketDataSearchResults;
     }
 
-    public void clear() {
+    public void clearMarketDataForm() {
         this.marketData.setCategory("");
         this.marketData.setTicker("");
         this.marketData.setInterval("");

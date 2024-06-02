@@ -124,10 +124,13 @@
             </div>
 
             <button type="submit" class="btn btn-dark m-2 pt-2 pr-5 pl-5 pb-2">Search</button>
-            <button type="button" class="btn btn-secondary m-2 pt-2 pr-5 pl-5 pb-2">Clear</button>
+            <a class="btn btn-secondary m-2 pt-2 pr-5 pl-5 pb-2"
+                th:href="@{/clearMarketData}"
+                onclick="return true">Clear</a>
         </form>
 
-        <div class="market-data-graph">
+        <div class="market-data-graph"
+            th:if="${marketDataSearchResults.size() != 0}">
             <h4>Market data</h4>
             <div>
                 <canvas id="marketDataGraph"></canvas>
@@ -192,7 +195,8 @@
             });
         </script>
 
-        <div class="market-data-table">
+        <div class="market-data-table"
+             th:if="${marketDataSearchResults.size() != 0}">
             <table class="table table-bordered table-striped">
                 <thead class="table-dark">
                     <tr>
