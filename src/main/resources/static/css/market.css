@@ -37,3 +37,7 @@ h5 {
     background-color: #6c757d;
     width: 100%;
 }
+
+.market-data-form-error {
+    color: lightgray;
+}

@@ -1,12 +1,24 @@
 package com.ts.finpredict.FinPredict.model.entity;
 
+import jakarta.validation.constraints.NotNull;
+
 import java.util.*;
 
 public class MarketData {
+
+    @NotNull(message = "is required")
     private String category;
+
+    @NotNull(message = "is required")
     private String ticker;
+
+    @NotNull(message = "is required")
     private String interval;
+
+    @NotNull(message = "is required")
     private String startDate;
+
+    @NotNull(message = "is required")
     private String endDate;
 
     private Map<String, Integer> marketDataSearchResults = new TreeMap<String, Integer>();

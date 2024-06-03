@@ -11,15 +11,16 @@ import com.ts.finpredict.FinPredict.model.entity.PredictorWeeklyEntity;
 import com.ts.finpredict.FinPredict.model.service.PredictorDailyService;
 import com.ts.finpredict.FinPredict.model.service.PredictorWeeklyService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -120,6 +121,12 @@ public class FinPredictController {
 //        this.predictorWeeklyService = predictorWeeklyService;
 //    }
 
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+    }
+
     @GetMapping("/")
     public String about(Model model) {
         model.addAttribute("navigationLinksHeaders", navigationLinksHeaders);
@@ -142,8 +149,23 @@ public class FinPredictController {
     }
 
     @PostMapping("/searchMarketData")
-    public String searchMarketData(@ModelAttribute("marketData") MarketData marketData,
-                                   Model model) throws Exception {
+    public String searchMarketData(
+            @Valid @ModelAttribute("marketData") MarketData marketData,
+            BindingResult bindingResult,
+            Model model
+    ) throws Exception {
+        System.out.println(bindingResult.toString());
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("marketDataCategories", marketDataCategories);
+            model.addAttribute("marketDataIntervals", marketDataIntervals);
+
+            model.addAttribute("marketData", marketData);
+            model.addAttribute("marketDataSearchResults", marketData.getMarketDataSearchResults());
+
+            return "marketdata/marketdata";
+        }
+
         Map<String, Integer> marketDataSearchResults = marketDataWorker.searchMarketData(
                 finpredictapiurl + finpredictapimarketdatapath,
                 marketData
