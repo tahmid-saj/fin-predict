@@ -34,8 +34,8 @@ public class PredictorWorker {
         return predictor;
     }
 
-    public int generateCurrentDayPrediction(String urlCurrentDay) throws Exception {
-        int resCurrentDayPrediction = this.predictorRequests.getPredictorCurrentDayResults(urlCurrentDay);
+    public float generateCurrentDayPrediction(String urlCurrentDay) throws Exception {
+        float resCurrentDayPrediction = this.predictorRequests.getPredictorCurrentDayResults(urlCurrentDay);
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
@@ -45,8 +45,8 @@ public class PredictorWorker {
         return resCurrentDayPrediction;
     }
 
-    public Map<String, Integer> generateCurrentWeekPredictions(String urlCurrentWeek) throws Exception {
-        Map<String, Integer> resCurrentWeekPredictions = this.predictorRequests.getPredictorCurrentWeekResults(urlCurrentWeek);
+    public Map<String, Float> generateCurrentWeekPredictions(String urlCurrentWeek) throws Exception {
+        Map<String, Float> resCurrentWeekPredictions = this.predictorRequests.getPredictorCurrentWeekResults(urlCurrentWeek);
         this.predictor.setCurrentWeekPredictions(resCurrentWeekPredictions);
 
         return resCurrentWeekPredictions;

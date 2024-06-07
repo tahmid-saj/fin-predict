@@ -61,7 +61,7 @@ public class FinPredictController {
     private String finpredictapipredictorcurrentweekpath;
 
     MarketDataWorker marketDataWorker = new MarketDataWorker();
-    PredictorWorker predictorWorker = new PredictorWorker(finpredictapipredictorcurrentdaypath, finpredictapipredictorcurrentweekpath);
+
     AdviceWorker adviceWorker = new AdviceWorker();
     ChatbotWorker chatbotWorker = new ChatbotWorker();
 
@@ -70,7 +70,7 @@ public class FinPredictController {
 //    private PredictorWeeklyEntity predictorWeeklyEntity;
 
     @Autowired
-    public FinPredictController() throws Exception {
+    public FinPredictController() {
     }
 
 //    constructor injection
@@ -184,8 +184,14 @@ public class FinPredictController {
 
     @GetMapping("/predictor")
     public String predictor(Model model) throws Exception {
+        PredictorWorker predictorWorker = new PredictorWorker(
+                finpredictapiurl + finpredictapipredictorcurrentdaypath,
+                finpredictapiurl + finpredictapipredictorcurrentweekpath
+        );
+
         model.addAttribute("predictorHeaders", predictorHeaders);
         model.addAttribute("predictorIntervals", predictorIntervals);
+
         model.addAttribute("predictorCurrentDayPredictionDate",
                 predictorWorker.predictor.getCurrentDayPredictionDate());
         model.addAttribute("predictorCurrentDayPredictionPrice",

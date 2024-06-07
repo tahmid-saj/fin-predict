@@ -6,15 +6,15 @@ import java.util.TreeMap;
 public class Predictor {
 
     private String currentDayPredictionDate;
-    private int currentDayPredictionPrice;
+    private float currentDayPredictionPrice;
 
-    private Map<String, Integer> currentWeekPredictions = new TreeMap<String, Integer>();
+    private Map<String, Float> currentWeekPredictions = new TreeMap<String, Float>();
 
     public Predictor() {
 
     }
 
-    public Predictor(String currentDayPredictionDate, int currentDayPredictionPrice, Map<String, Integer> currentWeekPredictions) {
+    public Predictor(String currentDayPredictionDate, float currentDayPredictionPrice, Map<String, Float> currentWeekPredictions) {
         this.currentDayPredictionDate = currentDayPredictionDate;
         this.currentDayPredictionPrice = currentDayPredictionPrice;
         this.currentWeekPredictions = currentWeekPredictions;
@@ -28,19 +28,19 @@ public class Predictor {
         this.currentDayPredictionDate = currentDayPredictionDate;
     }
 
-    public int getCurrentDayPredictionPrice() {
+    public float getCurrentDayPredictionPrice() {
         return currentDayPredictionPrice;
     }
 
-    public void setCurrentDayPredictionPrice(int currentDayPredictionPrice) {
+    public void setCurrentDayPredictionPrice(float currentDayPredictionPrice) {
         this.currentDayPredictionPrice = currentDayPredictionPrice;
     }
 
-    public Map<String, Integer> getCurrentWeekPredictions() {
+    public Map<String, Float> getCurrentWeekPredictions() {
         return currentWeekPredictions;
     }
 
-    public void setCurrentWeekPredictions(Map<String, Integer> currentWeekPredictions) {
+    public void setCurrentWeekPredictions(Map<String, Float> currentWeekPredictions) {
         this.currentWeekPredictions = currentWeekPredictions;
     }
 }
