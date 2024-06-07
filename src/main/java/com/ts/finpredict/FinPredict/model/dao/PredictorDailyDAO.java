@@ -1,19 +1,19 @@
-package com.ts.finpredict.FinPredict.model.dao;
-
-import com.ts.finpredict.FinPredict.model.entity.PredictorDailyEntity;
-
-import java.util.List;
-
-public interface PredictorDailyDAO {
-    void save(PredictorDailyEntity predictorDailyEntity);
-
-    List<PredictorDailyEntity> findByDate(String currentDay);
-
-    List<PredictorDailyEntity> findAll();
-
-    void update(PredictorDailyEntity predictorDailyEntity);
-
-    void delete(String currentDay);
-
-    int deleteAll();
-}
+//package com.ts.finpredict.FinPredict.model.dao;
+//
+//import com.ts.finpredict.FinPredict.model.entity.PredictorDailyEntity;
+//
+//import java.util.List;
+//
+//public interface PredictorDailyDAO {
+//    void save(PredictorDailyEntity predictorDailyEntity);
+//
+//    List<PredictorDailyEntity> findByDate(String currentDay);
+//
+//    List<PredictorDailyEntity> findAll();
+//
+//    void update(PredictorDailyEntity predictorDailyEntity);
+//
+//    void delete(String currentDay);
+//
+//    int deleteAll();
+//}
