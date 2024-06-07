@@ -35,40 +35,34 @@ public class PredictorRequests {
 
     }
 
-    public static int getPredictorCurrentDayResults(String url) throws Exception {
-        int res = 0;
+    public static float getPredictorCurrentDayResults(String url) throws Exception {
+        float res = 0;
 
-//        try {
-//            res = sendGetCurrentDay(url);
-//        } finally {
+        try {
+            res = sendGetCurrentDay(url);
+        } finally {
 //            close();
-//        }
+        }
 
         return res;
     }
 
-    public static Map<String, Integer> getPredictorCurrentWeekResults(String url) throws Exception {
-        Map<String, Integer> res = new TreeMap<String, Integer>();
+    public static Map<String, Float> getPredictorCurrentWeekResults(String url) throws Exception {
+        Map<String, Float> res = new TreeMap<String, Float>();
 
-        Random rand = new Random();
+//        Random rand = new Random();
+//
+//        float randNum = rand.nextFloat(10);
+//
+//        res.put("2024-05-01", Float.valueOf(123));
+//        res.put("2024-05-02", Float.valueOf(123));
+//        res.put("2024-05-03", Float.valueOf(123));
 
-        int randNum = rand.nextInt(10);
-
-        if (randNum <= 5) {
-            res.put("2024-05-01", 211);
-            res.put("2024-05-02", 301);
-            res.put("2024-05-03", 101);
-        } else {
-            res.put("2024-05-01", 400);
-            res.put("2024-05-02", 301);
-            res.put("2024-05-03", 701);
-        }
-
-//        try {
-//            res = sendGetCurrentWeek(url);
-//        } finally {
+        try {
+            res = sendGetCurrentWeek(url);
+        } finally {
 //            close();
-//        }
+        }
 
         return res;
     }
@@ -77,7 +71,7 @@ public class PredictorRequests {
         httpClient.close();
     }
 
-    private static int sendGetCurrentDay(String url) throws Exception {
+    private static float sendGetCurrentDay(String url) throws Exception {
         HttpGet request = new HttpGet(url);
 
         try (CloseableHttpResponse response = httpClient.execute(request)) {
@@ -85,21 +79,19 @@ public class PredictorRequests {
             // Get HttpResponse Status
             System.out.println(response.getStatusLine().toString());
 
-            HttpEntity entity = response.getEntity();
-            Header headers = entity.getContentType();
-            System.out.println(headers);
+            String retSrc = EntityUtils.toString(response.getEntity());
+            JsonObject jsonResp = new Gson().fromJson(retSrc, JsonObject.class); // String to JSONObject
 
-            String result = null;
-            if (entity != null) {
-                // return it as a String
-                result = EntityUtils.toString(entity);
+            String closingPrice = "";
+            if (jsonResp.has("closingPrice")) {
+                closingPrice = jsonResp.get("closingPrice").toString();
             }
 
-            return Integer.parseInt(result);
+            return Float.parseFloat(closingPrice.substring(1, closingPrice.length() - 1));
         }
     }
 
-    public static Map<String, Integer> sendGetCurrentWeek(String url) throws Exception {
+    public static Map<String, Float> sendGetCurrentWeek(String url) throws Exception {
         HttpGet request = new HttpGet(url);
 
         try (CloseableHttpResponse response = httpClient.execute(request)) {
@@ -115,17 +107,16 @@ public class PredictorRequests {
             if (jsonResp.has("closingPriceDates")) {
                 resDates = jsonResp.getAsJsonArray("closingPriceDates");
             }
-            System.out.println(resDates);
 
             JsonArray resClosingPrices = new JsonArray();
             if (jsonResp.has("closingPrices")) {
                 resClosingPrices = jsonResp.getAsJsonArray("closingPrices");
             }
-            System.out.println(resClosingPrices);
 
-            Map<String, Integer> res = new TreeMap<String, Integer>();
+            Map<String, Float> res = new TreeMap<String, Float>();
             for (int i = 0; i < resDates.size(); i++) {
-                res.put(resDates.get(i).toString(), resClosingPrices.get(i).getAsInt());
+                String tmp = resDates.get(i).toString();
+                res.put(tmp.substring(1, tmp.length() - 1), resClosingPrices.get(i).getAsFloat());
             }
 
             return res;

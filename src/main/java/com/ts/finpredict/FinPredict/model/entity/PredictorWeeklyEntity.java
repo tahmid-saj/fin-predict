@@ -17,13 +17,13 @@ public class PredictorWeeklyEntity {
     private String currentDay;
 
     @Column(name="closing_price")
-    private int closingPrice;
+    private float closingPrice;
 
     public PredictorWeeklyEntity() {
 
     }
 
-    public PredictorWeeklyEntity(String currentDay, int closingPrice) {
+    public PredictorWeeklyEntity(String currentDay, float closingPrice) {
         this.currentDay = currentDay;
         this.closingPrice = closingPrice;
     }
@@ -36,11 +36,11 @@ public class PredictorWeeklyEntity {
         this.currentDay = currentDay;
     }
 
-    public int getClosingPrice() {
+    public float getClosingPrice() {
         return closingPrice;
     }
 
-    public void setClosingPrice(int closingPrice) {
+    public void setClosingPrice(float closingPrice) {
         this.closingPrice = closingPrice;
     }
 

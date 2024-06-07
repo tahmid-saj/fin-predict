@@ -27,29 +27,29 @@ public class MarketDataRequests {
     public static Map<String, Integer> getMarketDataSearchResults(String url, MarketData marketData) throws Exception {
         Map<String, Integer> res = new TreeMap<String, Integer>();
 
-        Random rand = new Random();
-
-        int randNum = rand.nextInt(10);
-
-        if (randNum <= 5) {
-            res.put("2024-05-01", 211);
-            res.put("2024-05-02", 301);
-            res.put("2024-05-03", 101);
-        } else {
-            res.put("2024-05-01", 400);
-            res.put("2024-05-02", 301);
-            res.put("2024-05-03", 701);
-        }
-
-        return res;
-
-//        try {
-//            res = sendPost(url, marketData);
-//        } finally {
-//            close();
+//        Random rand = new Random();
+//
+//        int randNum = rand.nextInt(10);
+//
+//        if (randNum <= 5) {
+//            res.put("2024-05-01", 211);
+//            res.put("2024-05-02", 301);
+//            res.put("2024-05-03", 101);
+//        } else {
+//            res.put("2024-05-01", 400);
+//            res.put("2024-05-02", 301);
+//            res.put("2024-05-03", 701);
 //        }
 //
 //        return res;
+
+        try {
+            res = sendPost(url, marketData);
+        } finally {
+//            close();
+        }
+
+        return res;
     }
 
     private static void close() throws IOException {
@@ -58,8 +58,6 @@ public class MarketDataRequests {
 
     private static Map<String, Integer> sendPost(String url, MarketData marketData) throws Exception {
         HttpPost post = new HttpPost(url);
-        System.out.println(url);
-        System.out.println(marketData);
 
 //        request headers
         post.addHeader("Content-Type", "application/json");
@@ -68,7 +66,7 @@ public class MarketDataRequests {
                 "\"ticker\":" + "\"" + marketData.getTicker() + "\"," +
                 "\"interval\":" + "\"" + marketData.getInterval() + "\"," +
                 "\"startDate\":" + "\"" + marketData.getStartDate() + "\"," +
-                "\"endDate\":" + "\"" + marketData.getEndDate() + "\"," +
+                "\"endDate\":" + "\"" + marketData.getEndDate() + "\"" +
             "}";
         final StringEntity entityJsonBody = new StringEntity(jsonBody);
         post.setEntity(entityJsonBody);
@@ -76,14 +74,12 @@ public class MarketDataRequests {
         try (CloseableHttpClient httpClient = HttpClients.createDefault();
              CloseableHttpResponse response = httpClient.execute(post)) {
 
-//            System.out.println("chatbot response: " + EntityUtils.toString(response.getEntity()));
             String retSrc = EntityUtils.toString(response.getEntity());
 
 //            JSONObject result = new JSONObject(retSrc);
 ////            JSONArray tokenList = result.getJSONArray("names");
 ////            JSONObject message = result.getJSONObject("message");
 //            String message = result.getString("message");
-//            System.out.println(message);
 
             JsonObject jsonResp = new Gson().fromJson(retSrc, JsonObject.class); // String to JSONObject
 
@@ -91,17 +87,16 @@ public class MarketDataRequests {
             if (jsonResp.has("closingPriceDates")) {
                 resDates = jsonResp.getAsJsonArray("closingPriceDates");
             }
-            System.out.println(resDates);
 
             JsonArray resClosingPrices = new JsonArray();
             if (jsonResp.has("closingPrices")) {
                 resClosingPrices = jsonResp.getAsJsonArray("closingPrices");
             }
-            System.out.println(resClosingPrices);
 
             Map<String, Integer> res = new TreeMap<String, Integer>();
             for (int i = 0; i < resDates.size(); i++) {
-                res.put(resDates.get(i).toString(), resClosingPrices.get(i).getAsInt());
+                String tmp = resDates.get(i).toString();
+                res.put(tmp.substring(1, tmp.length() - 1), resClosingPrices.get(i).getAsInt());
             }
 
             return res;

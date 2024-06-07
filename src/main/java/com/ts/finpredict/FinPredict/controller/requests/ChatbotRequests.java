@@ -35,16 +35,11 @@ public class ChatbotRequests {
     }
 
     public static String getChatbotResponse(String url, String userMessage) throws Exception {
-//        return "Sure, I'd be happy to help with some general financial advice. Could you provide more details about " +
-//                "your financial situation or specific areas you need advice on? For example, are you looking for guidance " +
-//                "on budgeting, saving, investing, debt management, retirement planning, or something else? The more specific " +
-//                "you can be, the better advice I can offer.";
-
         String res = "";
         try {
             res = sendPost(url, userMessage);
         } finally {
-            close();
+//            close();
         }
 
         return res;
@@ -56,24 +51,24 @@ public class ChatbotRequests {
 
     private static String sendPost(String url, String userMessage) throws Exception {
         HttpPost post = new HttpPost(url);
-        System.out.println(url);
-        System.out.println(userMessage);
-        post.addHeader("Content-Type", "text/plain");
 
-        final StringEntity userMessageBody = new StringEntity(userMessage.toString());
-        post.setEntity(userMessageBody);
+//      request headers
+        post.addHeader("Content-Type", "application/json");
+
+        final String jsonBody = "{\"userMessage\":" + "\"" + userMessage+ "\"" +
+                "}";
+        final StringEntity entityJsonBody = new StringEntity(jsonBody);
+        post.setEntity(entityJsonBody);
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault();
              CloseableHttpResponse response = httpClient.execute(post)) {
 
-//            System.out.println("chatbot response: " + EntityUtils.toString(response.getEntity()));
             String retSrc = EntityUtils.toString(response.getEntity());
 
 //            JSONObject result = new JSONObject(retSrc);
 ////            JSONArray tokenList = result.getJSONArray("names");
 ////            JSONObject message = result.getJSONObject("message");
 //            String message = result.getString("message");
-//            System.out.println(message);
 
             JsonObject jsonResp = new Gson().fromJson(retSrc, JsonObject.class); // String to JSONObject
 
@@ -81,8 +76,6 @@ public class ChatbotRequests {
             if (jsonResp.has("message")) {
                 message = jsonResp.get("message").toString();
             }
-
-            System.out.println(message);
 
             return message.substring(1, message.length() - 1);
         }
