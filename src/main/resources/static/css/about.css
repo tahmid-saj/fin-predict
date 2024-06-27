@@ -16,3 +16,12 @@
     bottom: 0px;
     margin: 1% 1% 5% 1%;
 }
+
+.card-title,
+.card-text {
+    color: black;
+}
+
+a {
+    text-decoration: none;
+}

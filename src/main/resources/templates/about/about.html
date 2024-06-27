@@ -59,44 +59,64 @@
         </div>
     </nav>
 
-    <div class="about-cards-container">
-        <div class="card" style="width: 22rem; height: 30rem;">
-            <img class="card-img-top" src="https://static.vecteezy.com/system/resources/previews/014/563/665/original/investment-forecast-or-prediction-vision-to-see-investing-opportunity-future-profit-from-stock-and-crypto-trading-concept-flat-modern-illustration-vector.jpg"
-                 alt="Card image cap" style="height: 15rem;">
-            <div class="card-body">
-                <h5 class="card-title" th:text="${navigationLinksHeaders.get(1)}"></h5>
-                <p class="card-text">Get current and historical market data on stocks, indices, crypto and foreign exchange.</p>
-                <a href="/market" class="btn btn-secondary">Learn more</a>
-            </div>
-        </div>
+    <div class="container">
+        <div class="about-cards-container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <a href="/market">
+                        <div class="card" style="width: 22rem; height: 30rem;">
+                            <img class="card-img-top" src="https://static.vecteezy.com/system/resources/previews/014/563/665/original/investment-forecast-or-prediction-vision-to-see-investing-opportunity-future-profit-from-stock-and-crypto-trading-concept-flat-modern-illustration-vector.jpg"
+                                 alt="Card image cap" style="height: 15rem;">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${navigationLinksHeaders.get(1)}"></h5>
+                                <p class="card-text">Get current and historical market data on stocks, indices, crypto and foreign exchange.</p>
+                                <a href="/market" class="btn btn-secondary">Learn more</a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
 
-        <div class="card" style="width: 22rem; height: 30rem;">
-            <img class="card-img-top" src="https://media.istockphoto.com/id/1189915287/vector/business-team-and-successful-financial-strategy.jpg?s=612x612&w=0&k=20&c=bk1TpF1dhIQ2znV_0veCQ6yY-QSud0m7-CzE6GCJ5QQ="
-                 alt="Card image cap" style="height: 15rem;">
-            <div class="card-body">
-                <h5 class="card-title" th:text="${navigationLinksHeaders.get(2)}"></h5>
-                <p class="card-text">A bitcoin and stock predictor developed to inform of any potential investment opportunities or downfalls.</p>
-                <a href="/predictor" class="btn btn-secondary">Learn more</a>
-            </div>
-        </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <a href="/predictor">
+                        <div class="card" style="width: 22rem; height: 30rem;">
+                            <img class="card-img-top" src="https://media.istockphoto.com/id/1189915287/vector/business-team-and-successful-financial-strategy.jpg?s=612x612&w=0&k=20&c=bk1TpF1dhIQ2znV_0veCQ6yY-QSud0m7-CzE6GCJ5QQ="
+                                 alt="Card image cap" style="height: 15rem;">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${navigationLinksHeaders.get(2)}"></h5>
+                                <p class="card-text">A bitcoin and stock predictor developed to inform of any potential investment opportunities or downfalls.</p>
+                                <a href="/predictor" class="btn btn-secondary">Learn more</a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
 
-        <div class="card" style="width: 22rem; height: 30rem;">
-            <img class="card-img-top" src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/334804806/original/793cad2ae511c4c9b30c1d5e8206b8eb8ab21087/create-a-ai-chat-bot-embedded-website-for-you.png"
-                 alt="Card image cap" style="height: 15rem;">
-            <div class="card-body">
-                <h5 class="card-title" th:text="${navigationLinksHeaders.get(3)}"></h5>
-                <p class="card-text">Provide your financial concerns and ask for suggestions from our chatbot.</p>
-                <a href="/advice" class="btn btn-secondary">Learn more</a>
-            </div>
-        </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <a href="/advice">
+                        <div class="card" style="width: 22rem; height: 30rem;">
+                            <img class="card-img-top" src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/334804806/original/793cad2ae511c4c9b30c1d5e8206b8eb8ab21087/create-a-ai-chat-bot-embedded-website-for-you.png"
+                                 alt="Card image cap" style="height: 15rem;">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${navigationLinksHeaders.get(3)}"></h5>
+                                <p class="card-text">Provide your financial concerns and ask for suggestions from our chatbot.</p>
+                                <a href="/advice" class="btn btn-secondary">Learn more</a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
 
-        <div class="card" style="width: 22rem; height: 30rem;">
-            <img class="card-img-top" src="https://media.istockphoto.com/id/1161246760/vector/company-strategy-planning-business-data-analysis-business-educational-concept-digital.jpg?s=612x612&w=0&k=20&c=HcfgXYM9TpaBDHohGjDkuOcrDlwpbj_6h-n0RGNtgpw="
-                 alt="Card image cap" style="height: 15rem;">
-            <div class="card-body">
-                <h5 class="card-title" th:text="${navigationLinksHeaders.get(4)}"></h5>
-                <p class="card-text">Receive weekly financial advice depending on the current economy and market.</p>
-                <a href="/advice" class="btn btn-secondary">Learn more</a>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <a href="/advice">
+                        <div class="card" style="width: 22rem; height: 30rem;">
+                            <img class="card-img-top" src="https://media.istockphoto.com/id/1161246760/vector/company-strategy-planning-business-data-analysis-business-educational-concept-digital.jpg?s=612x612&w=0&k=20&c=HcfgXYM9TpaBDHohGjDkuOcrDlwpbj_6h-n0RGNtgpw="
+                                 alt="Card image cap" style="height: 15rem;">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${navigationLinksHeaders.get(4)}"></h5>
+                                <p class="card-text">Receive weekly financial advice depending on the current economy and market.</p>
+                                <a href="/advice" class="btn btn-secondary">Learn more</a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
