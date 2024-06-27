@@ -69,8 +69,8 @@
 
     <div class="advice-container">
         <div class="advice-cards-container">
-            <div class="card" th:each="advice : ${advices.get(0)}" style="width: 22rem; height: 18rem;">
-                <div class="card-body">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-sm-12 col-md-6 col-lg-6 card" th:each="advice : ${advices.get(0)}">
                     <h5 class="card-title" th:text="${advice.key}"></h5>
                     <p class="card-text" th:text="${advice.value}"></p>
                 </div>
@@ -78,8 +78,8 @@
         </div>
 
         <div class="advice-cards-container">
-            <div class="card" th:each="advice : ${advices.get(1)}" style="width: 22rem; height: 18rem;">
-                <div class="card-body">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-sm-12 col-md-6 col-lg-6 card" th:each="advice : ${advices.get(1)}">
                     <h5 class="card-title" th:text="${advice.key}"></h5>
                     <p class="card-text" th:text="${advice.value}"></p>
                 </div>
@@ -91,20 +91,20 @@
             <h7>Example: Can you give me some financial advice?</h7>
 
             <form action="#" class="chatbot-form"
-                th:action="@{/generateChatbotResponse}" th:object="${chatbot}" method="POST">
+                  th:action="@{/generateChatbotResponse}" th:object="${chatbot}" method="POST">
                 <div class="input-group input-group-lg">
                     <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm"
-                    th:field="*{userMessage}">
+                           th:field="*{userMessage}">
                 </div>
 
                 <button type="submit" class="btn btn-dark m-2 pt-2 pr-5 pl-5 pb-2">Message</button>
                 <a class="btn btn-secondary m-2 pt-2 pr-5 pl-5 pb-2"
-                    th:href="@{clearUserMessage}"
-                    onclick="return true">Clear</a>
+                   th:href="@{clearUserMessage}"
+                   onclick="return true">Clear</a>
             </form>
 
             <div class="card"
-                th:if="${chatbotResponse != null}">
+                 th:if="${chatbotResponse != null}">
                 <div class="chatbot-response-text card-body">
                     <h5 class="card-title">Chatbot</h5>
                     <p class="card-text" id="chatbotResponseParagraph"></p>
