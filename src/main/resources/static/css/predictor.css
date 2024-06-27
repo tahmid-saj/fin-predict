@@ -12,7 +12,7 @@
     display: block;
     justify-content: center;
     align-items: center;
-    margin: 2% 20% 2% 20%;
+    margin: 2% 1% 2% 1%;
     padding: 2%;
 }
 
@@ -28,17 +28,24 @@ h5 {
     margin: 15px auto;
     border-radius: 1.001rem;
     background-color: #cce3de;
-    width: 95%;
+    width: auto;
     margin-bottom: 5%;
     padding: 2%;
 }
 
 .daily-predictor-table {
+    display: block;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 5%;
+    width: auto;
 }
 
 .predictor-table {
+    display: block;
+    justify-content: center;
+    align-items: center;
     margin: 5% 1% 1% 1%;
     background-color: #6c757d;
-    width: 100%;
+    width: auto;
 }
