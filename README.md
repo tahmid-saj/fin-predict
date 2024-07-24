@@ -1,3 +1,3 @@
 # FinPredict
 
-A bitcoin and stock predictor developed to inform of any potential investment opportunities or downfalls.
+Finance prediction app to view historical and current market data, weekly predictions on BTC / stocks / forex, and get support from AI driven services. Developed with Spring Boot, Maven, Thymeleaf, Django, AWS, Docker, MySQL.
