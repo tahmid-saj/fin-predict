@@ -43,8 +43,8 @@ git clone https://github.com/tahmid-saj/fin-predict.git
 * OpenAI: Services chatbot requests
 * polygon.io: Provides market data for requests from the __Finance Predict API__
 5. __Databases__: A MongoDB cluster and collections are created, and a connection is established with the __Finance Predict API__.
-6. __Data engineering__: The set up for the development environment for the data engineering tool can be found [here](https://github.com/tahmid-saj/etl-elt-api)
-7. __Machine learning__: The set up for the development environment for the ML job scheduler can be found [here](https://github.com/tahmid-saj/ml-job-scheduler)
+6. __Data engineering__: The set up for the development environment for the data engineering tool can be found [here](https://github.com/tahmid-saj/etl-elt-api).
+7. __Machine learning__: The set up for the development environment for the ML job scheduler can be found [here](https://github.com/tahmid-saj/ml-job-scheduler).
 8. __AWS__: Setting up the AWS services is an optional step as this is on a development environment. However, the same services could be used to create the tools mentioned in the high level view.
 9. __Running the client__: The client can be run using an IDE or Docker using:
 * To package your application with Maven run:
