@@ -5,6 +5,86 @@ Finance prediction app to view historical and current market data, weekly predic
 <br>
 <br>
 
+The structure of the codebase is as follows:
+
+```
+main/
+├── java/
+│   └── com/
+│       └── ts/
+│           └── finpredict/
+│               ├── assets/
+│               ├── FinPredict/
+│               │   ├── config/
+│               │   │   └── PredictorEntityConfig.java
+│               │   ├── controller/
+│               │   │   ├── about/
+│               │   │   ├── advice/
+│               │   │   │   └── AdviceWorker.java
+│               │   │   ├── chatbot/
+│               │   │   │   └── ChatbotWorker.java
+│               │   │   ├── FinPredictController.java
+│               │   │   ├── marketdata/
+│               │   │   │   └── MarketDataWorker.java
+│               │   │   ├── predictor/
+│               │   │   │   └── PredictorWorker.java
+│               │   │   └── requests/
+│               │   │       ├── AdviceRequests.java
+│               │   │       ├── ChatbotRequests.java
+│               │   │       ├── MarketDataRequests.java
+│               │   │       └── PredictorRequests.java
+│               │   ├── FinPredictApplication.java
+│               │   └── model/
+│               │       ├── dao/
+│               │       │   ├── PredictorDailyDAO.java
+│               │       │   ├── PredictorDailyDAOImpl.java
+│               │       │   ├── PredictorWeeklyDAO.java
+│               │       │   └── PredictorWeeklyDAOImpl.java
+│               │       ├── entity/
+│               │       │   ├── Advice.java
+│               │       │   ├── Chatbot.java
+│               │       │   ├── MarketData.java
+│               │       │   ├── Predictor.java
+│               │       │   ├── PredictorDailyEntity.java
+│               │       │   └── PredictorWeeklyEntity.java
+│               │       └── service/
+│               │           ├── PredictorDailyService.java
+│               │           ├── PredictorDailyServiceImpl.java
+│               │           ├── PredictorWeeklyService.java
+│               │           └── PredictorWeeklyServiceImpl.java
+│               └── util/
+│                   ├── errors/
+│                   │   └── shared/
+│                   │       ├── PageErrorResponse.java
+│                   │       ├── PageExceptionHandler.java
+│                   │       └── PageNotFoundException.java
+│                   ├── helpers/
+│                   └── sql/
+│                       ├── predictor-current-day-ddl.sql
+│                       └── predictor-current-week-ddl.sql
+└── resources/
+    ├── application.properties
+    ├── static/
+    │   ├── css/
+    │   │   ├── about.css
+    │   │   ├── advice.css
+    │   │   ├── market.css
+    │   │   └── predictor.css
+    │   ├── pages/
+    │   │   └── index.html
+    │   └── shared/
+    │       └── index.css
+    └── templates/
+        ├── about/
+        │   └── about.html
+        ├── advice/
+        │   └── advice.html
+        ├── marketdata/
+        │   └── marketdata.html
+        └── predictor/
+            └── predictor.html
+```
+
 <figure>
   <img width="946" alt="image" src="https://github.com/user-attachments/assets/24c51268-c37a-46fd-981d-f1df7a9fc866">
 </figure>
